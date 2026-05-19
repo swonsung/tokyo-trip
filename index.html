@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>도쿄 여행 2026 · 6/3–6/8</title>
+  <style>
+    :root {
+      --red: #c0392b;
+      --red-light: #f9eaea;
+      --navy: #1a2340;
+      --navy-light: #eef0f6;
+      --gold: #c9942a;
+      --gold-light: #fdf6e3;
+      --green: #27ae60;
+      --green-light: #eafaf1;
+      --gray: #6c757d;
+      --gray-light: #f8f9fa;
+      --border: #e9ecef;
+      --white: #ffffff;
+      --text: #212529;
+      --text-muted: #868e96;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      background: #f0f2f5;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, #1a2340 0%, #2d4270 60%, #c0392b 100%);
+      color: white;
+      padding: 52px 20px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '東京';
+      position: absolute;
+      font-size: 160px;
+      font-weight: 900;
+      opacity: .05;
+      top: -20px; right: -10px;
+      line-height: 1;
+    }
+    .hero-flag { font-size: 36px; margin-bottom: 8px; }
+    .hero h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+    .hero-sub { font-size: 14px; opacity: .8; margin-top: 4px; }
+    .hero-dates {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.15);
+      border-radius: 100px;
+      padding: 6px 16px;
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .3px;
+    }
+    .hero-dates span { opacity: .7; }
+
+    /* ── Nav tabs ── */
+    .tabs {
+      display: flex;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      flex: 0 0 auto;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: all .2s;
+    }
+    .tab.active {
+      color: var(--red);
+      border-bottom-color: var(--red);
+    }
+
+    /* ── Sections ── */
+    .section { display: none; padding: 16px; }
+    .section.active { display: block; }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+    }
+    .card-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    /* ── Flight card ── */
+    .flight-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px;
+    }
+    .airline-badge {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .badge-jal { background: #f9eaea; }
+    .badge-ke { background: #eef0f6; }
+    .flight-name { font-size: 16px; font-weight: 700; }
+    .flight-num { font-size: 12px; color: var(--text-muted); }
+    .flight-route {
+      display: flex; align-items: center; gap: 0;
+      margin-bottom: 10px;
+    }
+    .flight-city { flex: 1; }
+    .flight-city.right { text-align: right; }
+    .flight-time { font-size: 26px; font-weight: 700; letter-spacing: -1px; }
+    .flight-iata { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .flight-mid {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; gap: 4px; padding: 0 8px;
+    }
+    .flight-duration { font-size: 11px; color: var(--text-muted); }
+    .flight-line {
+      width: 100%; display: flex; align-items: center; gap: 4px;
+    }
+    .flight-line-bar {
+      flex: 1; height: 1px; background: var(--border);
+    }
+    .flight-line-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--text-muted);
+    }
+    .flight-plane { font-size: 14px; color: var(--gray); }
+    .booking-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--gray-light);
+      border-radius: 8px; padding: 6px 10px;
+      font-size: 12px;
+    }
+    .booking-badge b { font-weight: 700; letter-spacing: .5px; }
+
+    /* ── Hotel card ── */
+    .hotel-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .hotel-dates { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+    .hotel-row {
+      display: flex; gap: 8px; font-size: 13px;
+    }
+    .hotel-tag {
+      background: var(--green-light); color: var(--green);
+      border-radius: 6px; padding: 3px 8px;
+      font-size: 12px; font-weight: 600;
+    }
+
+    /* ── Day timeline ── */
+    .day-header {
+      display: flex; align-items: center; gap: 10px;
+      margin: 20px 0 10px;
+    }
+    .day-num {
+      background: var(--navy);
+      color: white;
+      border-radius: 10px;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .day-date { font-size: 15px; font-weight: 600; }
+    .day-weekday { font-size: 13px; color: var(--text-muted); }
+
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 8px; top: 0; bottom: 0;
+      width: 2px; background: var(--border);
+    }
+    .tl-item {
+      position: relative; margin-bottom: 14px;
+    }
+    .tl-dot {
+      position: absolute; left: -24px; top: 3px;
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 2px solid;
+      background: white;
+    }
+    .tl-dot.flight { border-color: var(--red); }
+    .tl-dot.hotel  { border-color: var(--gold); }
+    .tl-dot.spot   { border-color: var(--navy); }
+    .tl-dot.food   { border-color: var(--green); }
+    .tl-dot.shop   { border-color: #9b59b6; }
+    .tl-dot.free   { border-color: var(--gray); }
+
+    .tl-time { font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
+    .tl-label { font-size: 15px; font-weight: 600; }
+    .tl-sub { font-size: 13px; color: var(--text-muted); }
+
+    .type-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      border-radius: 6px; padding: 2px 7px;
+      font-size: 11px; font-weight: 700;
+      margin-left: 6px; vertical-align: middle;
+    }
+    .type-flight { background: var(--red-light); color: var(--red); }
+    .type-hotel  { background: var(--gold-light); color: var(--gold); }
+    .type-spot   { background: var(--navy-light); color: var(--navy); }
+    .type-food   { background: var(--green-light); color: var(--green); }
+    .type-shop   { background: #f5eafa; color: #9b59b6; }
+
+    /* ── Checklist ── */
+    .check-group { margin-bottom: 20px; }
+    .check-group-title {
+      font-size: 13px; font-weight: 700;
+      color: var(--text-muted); letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+    .check-item {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 13px 14px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+      cursor: pointer;
+      transition: opacity .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .check-item.done { opacity: .45; }
+    .check-item.done .check-label { text-decoration: line-through; }
+    .check-box {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: all .2s;
+      font-size: 12px;
+      color: white;
+    }
+    .check-item.done .check-box {
+      background: var(--green);
+      border-color: var(--green);
+    }
+    .check-label { font-size: 15px; flex: 1; }
+    .check-sub { font-size: 12px; color: var(--text-muted); }
+    .check-icon { font-size: 20px; }
+
+    /* ── Info card ── */
+    .info-row {
+      display: flex; justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-key { color: var(--text-muted); }
+    .info-val { font-weight: 600; text-align: right; }
+
+    /* ── Summary strip ── */
+    .summary-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin-bottom: 16px;
+    }
+    .strip-item {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 14px 10px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    }
+    .strip-num { font-size: 22px; font-weight: 800; color: var(--navy); }
+    .strip-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 24px 16px 40px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-flag">🗼</div>
+  <h1>도쿄 여행</h1>
+  <div class="hero-sub">소원성 님의 도쿄 여행 플랜</div>
+  <div class="hero-dates">
+    <span>2026</span>
+    6월 3일(수) · · · 6월 8일(월)
+    <span>5박 6일</span>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs" id="tabs">
+  <div class="tab active" onclick="showTab('overview')">개요</div>
+  <div class="tab" onclick="showTab('day1')">1일차</div>
+  <div class="tab" onclick="showTab('day2')">2일차</div>
+  <div class="tab" onclick="showTab('day3')">3일차</div>
+  <div class="tab" onclick="showTab('day4')">4일차</div>
+  <div class="tab" onclick="showTab('day5')">5일차</div>
+  <div class="tab" onclick="showTab('day6')">6일차</div>
+  <div class="tab" onclick="showTab('checklist')">쇼핑 체크</div>
+</div>
+
+<!-- ═══════════════ 개요 ═══════════════ -->
+<div class="section active" id="overview">
+
+  <div class="summary-strip">
+    <div class="strip-item">
+      <div class="strip-num">5</div>
+      <div class="strip-label">박</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">6</div>
+      <div class="strip-label">일</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">은자</div>
+      <div class="strip-label">긴자 숙박</div>
+    </div>
+  </div>
+
+  <!-- 출발편 -->
+  <div class="card">
+    <div class="card-title">✈️ 출발편</div>
+    <div class="flight-header">
+      <div class="airline-badge badge-jal">🔴</div>
+      <div>
+        <div class="flight-name">Japan Airlines</div>
+        <div class="flight-num">JL090 · 이코노미</div>
+      </div>
+    </div>
+    <div class="flight-route">
+      <div class="flight-city">
+        <div class="flight-time">08:00</div>
+        <div class="flight-iata">GMP · 김포국제공항</div>
+      </div>
+      <div class="flight-mid">
+        <div class="flight-duration">2시간 15분</div>
+        <div class="flight-line">
+          <div class="flight-line-dot"></div>
+          <div class="flight-line-bar"></div>
+          <div class="flight-plane">✈</div>
+          <div class="flight-line-bar"></div>
+          <div class="flight-line-dot"></div>
+        </div>
+        <div class="flight-duration">직항</div>
+      </div>
+      <div class="flight-city right">
+        <div class="flight-time">10:15</div>
+        <div class="flight-iata">HND T3 · 도쿄 하네다</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-key">날짜</span>
+      <span class="info-val">2026년 6월 3일 (수)</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">예약번호</span>
+      <span class="info-val" style="font-family: monospace; font-size: 15px; color: var(--red);">DQWA8Y</span>
+    </div>
+  </div>
+
+  <!-- 귀국편 -->
+  <div class="card">
+    <div class="card-title">✈️ 귀국편</div>
+    <div class="flight-header">
+      <div class="airline-badge badge-ke">🔵</div>
+      <div>
+        <div class="flight-name">Korean Air</div>
+        <div class="flight-num">대한항공 · SKYPASS</div>
+      </div>
+    </div>
+    <div class="flight-route">
+      <div class="flight-city">
+        <div class="flight-time">19:55</div>
+        <div class="flight-iata">HND · 도쿄 하네다</div>
+      </div>
+      <div class="flight-mid">
+        <div class="flight-duration">약 2시간 20분</div>
+        <div class="flight-line">
+          <div class="flight-line-dot"></div>
+          <div class="flight-line-bar"></div>
+          <div class="flight-plane">✈</div>
+          <div class="flight-line-bar"></div>
+          <div class="flight-line-dot"></div>
+        </div>
+        <div class="flight-duration">직항</div>
+      </div>
+      <div class="flight-city right">
+        <div class="flight-time">22:15</div>
+        <div class="flight-iata">GMP · 서울 김포</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-key">날짜</span>
+      <span class="info-val">2026년 6월 8일 (월)</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">예약번호</span>
+      <span class="info-val" style="font-family: monospace; font-size: 15px; color: #1a6db5;">DQR3ZK</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">탑승자</span>
+      <span class="info-val">소원성 (SKYPASS)</span>
+    </div>
+  </div>
+
+  <!-- 호텔 -->
+  <div class="card">
+    <div class="card-title">🏨 숙소</div>
+    <div class="hotel-name">the square hotel GINZA</div>
+    <div class="hotel-dates">도쿄 · 긴자</div>
+    <div class="info-row">
+      <span class="info-key">체크인</span>
+      <span class="info-val">6월 3일 (수) 15:00~</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">체크아웃</span>
+      <span class="info-val">6월 8일 (월) ~11:00</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">객실</span>
+      <span class="info-val">1실</span>
+    </div>
+    <div style="margin-top: 10px;">
+      <span class="hotel-tag">✅ 예약 확정</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ 1일차 ═══════════════ -->
+<div class="section" id="day1">
+  <div class="day-header">
+    <div class="day-num">Day 1</div>
+    <div>
+      <div class="day-date">6월 3일 (수)</div>
+      <div class="day-weekday">서울 출발 · 도쿄 도착</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot flight"></div>
+        <div class="tl-time">07:00</div>
+        <div class="tl-label">김포공항 도착 <span class="type-badge type-flight">✈ 항공</span></div>
+        <div class="tl-sub">출발 1시간 전 도착 권장 · 국제선 T3</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot flight"></div>
+        <div class="tl-time">08:00</div>
+        <div class="tl-label">JL090 탑승 출발</div>
+        <div class="tl-sub">김포 GMP → 하네다 HND T3</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot flight"></div>
+        <div class="tl-time">10:15</div>
+        <div class="tl-label">도쿄 하네다 도착</div>
+        <div class="tl-sub">입국 심사 · 짐 수령 (약 40~60분 소요)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">11:30</div>
+        <div class="tl-label">도쿄 지하철 패스 구입 <span class="type-badge type-spot">🚇 교통</span></div>
+        <div class="tl-sub">하네다 공항 → 긴자 이동</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">12:30</div>
+        <div class="tl-label">점심 <span class="type-badge type-food">🍜 식사</span></div>
+        <div class="tl-sub">긴자 주변 첫 도쿄 식사</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">14:00</div>
+        <div class="tl-label">긴자 거리 산책 <span class="type-badge type-spot">🏙 관광</span></div>
+        <div class="tl-sub">긴자식스 · 마로니에게이트 쇼핑몰</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot hotel"></div>
+        <div class="tl-time">15:00</div>
+        <div class="tl-label">호텔 체크인 <span class="type-badge type-hotel">🏨 숙소</span></div>
+        <div class="tl-sub">the square hotel GINZA · 체크인 가능 시각</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot shop"></div>
+        <div class="tl-time">16:30</div>
+        <div class="tl-label">무인양품 긴자 본점 <span class="type-badge type-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">MUJI Ginza · 지상 6층</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">19:00</div>
+        <div class="tl-label">저녁 <span class="type-badge type-food">🍣 식사</span></div>
+        <div class="tl-sub">긴자 스시 또는 이자카야</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 2일차 ═══════════════ -->
+<div class="section" id="day2">
+  <div class="day-header">
+    <div class="day-num">Day 2</div>
+    <div>
+      <div class="day-date">6월 4일 (목)</div>
+      <div class="day-weekday">아사쿠사 · 우에노 · 아키하바라</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">08:00</div>
+        <div class="tl-label">호텔 조식 <span class="type-badge type-food">☕ 아침</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">09:30</div>
+        <div class="tl-label">아사쿠사 센소지 <span class="type-badge type-spot">⛩ 관광</span></div>
+        <div class="tl-sub">도쿄 최고(最古) 사원 · 나카미세도리 쇼핑거리</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">11:00</div>
+        <div class="tl-label">도쿄 스카이트리 <span class="type-badge type-spot">🗼 관광</span></div>
+        <div class="tl-sub">전망대 입장 (사전 예약 권장)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">13:00</div>
+        <div class="tl-label">점심 <span class="type-badge type-food">🍱 식사</span></div>
+        <div class="tl-sub">아사쿠사 멘치카츠 or 나기쇼쿠도</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">14:30</div>
+        <div class="tl-label">우에노 공원 산책 <span class="type-badge type-spot">🌳 관광</span></div>
+        <div class="tl-sub">우에노 동물원 · 도쿄 국립박물관 (선택)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot shop"></div>
+        <div class="tl-time">16:30</div>
+        <div class="tl-label">아키하바라 <span class="type-badge type-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">전자상가 · 서브컬처 거리</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">19:00</div>
+        <div class="tl-label">저녁 <span class="type-badge type-food">🍜 식사</span></div>
+        <div class="tl-sub">아키하바라 라멘 거리</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 3일차 ═══════════════ -->
+<div class="section" id="day3">
+  <div class="day-header">
+    <div class="day-num">Day 3</div>
+    <div>
+      <div class="day-date">6월 5일 (금)</div>
+      <div class="day-weekday">하라주쿠 · 시부야 · 오모테산도</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">09:00</div>
+        <div class="tl-label">아침 <span class="type-badge type-food">☕ 아침</span></div>
+        <div class="tl-sub">카페 또는 편의점 모닝</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">10:00</div>
+        <div class="tl-label">메이지 신궁 <span class="type-badge type-spot">⛩ 관광</span></div>
+        <div class="tl-sub">하라주쿠역 인근 · 도쿄 최대 신사</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot shop"></div>
+        <div class="tl-time">11:30</div>
+        <div class="tl-label">다케시타도리 &amp; 오모테산도 <span class="type-badge type-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">하라주쿠 쇼핑 · GU 플래그십 스토어</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">13:00</div>
+        <div class="tl-label">점심 <span class="type-badge type-food">🥗 식사</span></div>
+        <div class="tl-sub">오모테산도 카페 or 하라주쿠 크레페</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">14:30</div>
+        <div class="tl-label">시부야 스크램블 교차로 <span class="type-badge type-spot">🏙 관광</span></div>
+        <div class="tl-sub">시부야 스카이 전망대 (입장권 사전예약)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot shop"></div>
+        <div class="tl-time">16:00</div>
+        <div class="tl-label">시부야 쇼핑 <span class="type-badge type-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">시부야 히카리에 · GU · UNIQLO</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">19:00</div>
+        <div class="tl-label">저녁 <span class="type-badge type-food">🍖 식사</span></div>
+        <div class="tl-sub">시부야 야키니쿠 or 이자카야</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 4일차 ═══════════════ -->
+<div class="section" id="day4">
+  <div class="day-header">
+    <div class="day-num">Day 4</div>
+    <div>
+      <div class="day-date">6월 6일 (토)</div>
+      <div class="day-weekday">신주쿠 · 알펜도쿄</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">09:00</div>
+        <div class="tl-label">아침 <span class="type-badge type-food">☕ 아침</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">10:00</div>
+        <div class="tl-label">도쿄도청 전망대 <span class="type-badge type-spot">🏙 관광</span></div>
+        <div class="tl-sub">신주쿠 · 무료 전망대 · 후지산 조망 가능</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot shop"></div>
+        <div class="tl-time">11:30</div>
+        <div class="tl-label">신주쿠 알펜도쿄 🎯 <span class="type-badge type-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">아웃도어 전문점 · 몽벨 코너 확인 필수</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">13:30</div>
+        <div class="tl-label">점심 <span class="type-badge type-food">🍜 식사</span></div>
+        <div class="tl-sub">신주쿠 라멘 · 이치란 or 후우린</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">15:00</div>
+        <div class="tl-label">신주쿠 교엔 <span class="type-badge type-spot">🌳 관광</span></div>
+        <div class="tl-sub">도쿄 최대 정원 · 산책 추천</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot shop"></div>
+        <div class="tl-time">16:30</div>
+        <div class="tl-label">신주쿠 쇼핑 <span class="type-badge type-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">이세탄 백화점 · 타카시마야 · 루미네</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">18:30</div>
+        <div class="tl-label">가부키초 · 오모이데요코초 <span class="type-badge type-spot">🌃 야경</span></div>
+        <div class="tl-sub">신주쿠 골든가이 · 야간 산책</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">19:30</div>
+        <div class="tl-label">저녁 <span class="type-badge type-food">🍢 식사</span></div>
+        <div class="tl-sub">오모이데요코초 꼬치구이</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 5일차 ═══════════════ -->
+<div class="section" id="day5">
+  <div class="day-header">
+    <div class="day-num">Day 5</div>
+    <div>
+      <div class="day-date">6월 7일 (일)</div>
+      <div class="day-weekday">교바시 · 몽벨 · 맛집</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">09:00</div>
+        <div class="tl-label">아침 <span class="type-badge type-food">☕ 아침</span></div>
+        <div class="tl-sub">긴자 베이커리 카페</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot shop"></div>
+        <div class="tl-time">10:30</div>
+        <div class="tl-label">몽벨 교바시 🎯 <span class="type-badge type-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">캠핑체어 · 보냉백 · 선글라스 구입</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">12:00</div>
+        <div class="tl-label">교바시 이세히로 야키토리동 🎯 <span class="type-badge type-food">🍱 식사</span></div>
+        <div class="tl-sub">교바시 명물 야키토리덮밥 · 줄서기 각오</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">14:00</div>
+        <div class="tl-label">치쿠요테이 🎯 <span class="type-badge type-food">🍡 카페</span></div>
+        <div class="tl-sub">일본식 카페 · 화과자 디저트</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">15:00</div>
+        <div class="tl-label">도쿄역 · 마루노우치 <span class="type-badge type-spot">🏛 관광</span></div>
+        <div class="tl-sub">도쿄역 붉은 벽돌 건물 · 마루빌딩 전망</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot shop"></div>
+        <div class="tl-time">16:30</div>
+        <div class="tl-label">무인양품 유락초 <span class="type-badge type-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">향초 · 잠옷 등 마지막 MUJI 쇼핑</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">19:00</div>
+        <div class="tl-label">마지막 저녁 <span class="type-badge type-food">🍣 식사</span></div>
+        <div class="tl-sub">긴자 오마카세 스시 or 텐동</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 6일차 ═══════════════ -->
+<div class="section" id="day6">
+  <div class="day-header">
+    <div class="day-num">Day 6</div>
+    <div>
+      <div class="day-date">6월 8일 (월)</div>
+      <div class="day-weekday">체크아웃 · 귀국</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">08:00</div>
+        <div class="tl-label">조식 &amp; 짐 정리 <span class="type-badge type-food">☕ 아침</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot hotel"></div>
+        <div class="tl-time">11:00</div>
+        <div class="tl-label">호텔 체크아웃 <span class="type-badge type-hotel">🏨 숙소</span></div>
+        <div class="tl-sub">the square hotel GINZA · 짐 보관 가능 여부 확인</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">11:30</div>
+        <div class="tl-label">마지막 산책 <span class="type-badge type-spot">🌸 관광</span></div>
+        <div class="tl-sub">하마리큐 정원 or 긴자 주변 마지막 탐방</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">13:00</div>
+        <div class="tl-label">점심 <span class="type-badge type-food">🍜 식사</span></div>
+        <div class="tl-sub">도쿄 마지막 식사</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">15:00</div>
+        <div class="tl-label">하네다 공항 이동 <span class="type-badge type-spot">🚇 교통</span></div>
+        <div class="tl-sub">긴자역 → 하네다 공항 약 30~40분</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot spot"></div>
+        <div class="tl-time">17:00</div>
+        <div class="tl-label">면세점 &amp; 탑승 수속 <span class="type-badge type-shop">🛍 면세</span></div>
+        <div class="tl-sub">하네다 면세점 · 탑승 2시간 전 도착 권장</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot flight"></div>
+        <div class="tl-time">19:55</div>
+        <div class="tl-label">Korean Air 탑승 출발 <span class="type-badge type-flight">✈ 항공</span></div>
+        <div class="tl-sub">하네다 HND → 김포 GMP · 예약번호: DQR3ZK</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot flight"></div>
+        <div class="tl-time">22:15</div>
+        <div class="tl-label">서울 김포 도착 🏠</div>
+        <div class="tl-sub">입국 심사 후 귀가</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 쇼핑 체크리스트 ═══════════════ -->
+<div class="section" id="checklist">
+  <div style="margin-bottom: 6px; font-size: 13px; color: var(--text-muted); padding: 0 4px;">
+    항목을 탭하면 완료 처리됩니다.
+  </div>
+
+  <!-- 방문할 곳 -->
+  <div class="check-group">
+    <div class="check-group-title">📍 방문할 곳</div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">🏔</div>
+      <div>
+        <div class="check-label">신주쿠 알펜도쿄</div>
+        <div class="check-sub">신주쿠 · 아웃도어 전문점</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">⛺</div>
+      <div>
+        <div class="check-label">몽벨 교바시</div>
+        <div class="check-sub">교바시 · Mont-bell 공식 매장</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">🍱</div>
+      <div>
+        <div class="check-label">교바시 이세히로 야키토리동</div>
+        <div class="check-sub">교바시 · 야키토리덮밥 맛집</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">🍡</div>
+      <div>
+        <div class="check-label">치쿠요테이</div>
+        <div class="check-sub">화과자 카페</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">👕</div>
+      <div>
+        <div class="check-label">GU</div>
+        <div class="check-sub">시부야 or 신주쿠 플래그십</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">🏪</div>
+      <div>
+        <div class="check-label">무인양품 (MUJI)</div>
+        <div class="check-sub">긴자 본점 or 유락초점</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 몽벨 구입 목록 -->
+  <div class="check-group">
+    <div class="check-group-title">⛺ 몽벨 구입 목록</div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">🪑</div>
+      <div>
+        <div class="check-label">몽벨 캠핑체어</div>
+        <div class="check-sub">빅릴렉스체어 (Big Relax Chair?) 확인</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">🧊</div>
+      <div>
+        <div class="check-label">몽벨 보냉백</div>
+        <div class="check-sub">Cooler Bag</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">🕶</div>
+      <div>
+        <div class="check-label">몽벨 선글라스</div>
+        <div class="check-sub">아웃도어용 선글라스</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 무인양품 구입 목록 -->
+  <div class="check-group">
+    <div class="check-group-title">🏪 무인양품 구입 목록</div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">🕯</div>
+      <div>
+        <div class="check-label">무인양품 향초</div>
+        <div class="check-sub">MUJI Scented Candle</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-icon">😴</div>
+      <div>
+        <div class="check-label">무인양품 잠옷</div>
+        <div class="check-sub">MUJI Pajamas</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  🗼 도쿄 여행 2026 · 소원성<br>
+  6.3(수) – 6.8(월) · 5박 6일
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const tabs = document.querySelectorAll('.tab');
+    const order = ['overview','day1','day2','day3','day4','day5','day6','checklist'];
+    tabs[order.indexOf(id)].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('done');
+    const box = el.querySelector('.check-box');
+    box.textContent = el.classList.contains('done') ? '✓' : '';
+    saveState();
+  }
+
+  function saveState() {
+    const items = document.querySelectorAll('.check-item');
+    const state = Array.from(items).map(i => i.classList.contains('done'));
+    localStorage.setItem('tokyo-checks', JSON.stringify(state));
+  }
+
+  function loadState() {
+    const saved = localStorage.getItem('tokyo-checks');
+    if (!saved) return;
+    const state = JSON.parse(saved);
+    const items = document.querySelectorAll('.check-item');
+    items.forEach((item, i) => {
+      if (state[i]) {
+        item.classList.add('done');
+        item.querySelector('.check-box').textContent = '✓';
+      }
+    });
+  }
+
+  loadState();
+</script>
+</body>
+</html>
