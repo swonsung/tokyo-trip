@@ -14,8 +14,6 @@
       --gold-light: #fdf6e3;
       --green: #27ae60;
       --green-light: #eafaf1;
-      --gray: #6c757d;
-      --gray-light: #f8f9fa;
       --border: #e9ecef;
       --white: #ffffff;
       --text: #212529;
@@ -149,43 +147,55 @@
       width: 2px; background: var(--border);
     }
     .tl-item {
-      position: relative; margin-bottom: 4px;
+      position: relative; margin-bottom: 6px;
       background: var(--white); border-radius: 12px;
       box-shadow: 0 1px 4px rgba(0,0,0,.05);
-      padding: 12px 12px 12px 14px;
-      cursor: pointer;
-      transition: opacity .2s, background .15s;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
+      padding: 12px 72px 12px 14px; /* right padding for both buttons */
+      transition: opacity .2s;
     }
-    .tl-item.done { opacity: .4; }
+    .tl-item.done { opacity: .38; }
     .tl-item.done .tl-label { text-decoration: line-through; }
 
     .tl-dot {
-      position: absolute; left: -24px; top: 16px;
+      position: absolute; left: -24px; top: 18px;
       width: 12px; height: 12px; border-radius: 50%;
       border: 2.5px solid; background: white;
       transition: background .2s;
     }
     .tl-item.done .tl-dot { background: var(--green) !important; border-color: var(--green) !important; }
-
     .tl-dot.flight { border-color: var(--red); }
     .tl-dot.hotel  { border-color: var(--gold); }
     .tl-dot.spot   { border-color: var(--navy); }
     .tl-dot.food   { border-color: var(--green); }
     .tl-dot.shop   { border-color: #9b59b6; }
 
-    .tl-check {
-      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-      width: 20px; height: 20px; border-radius: 50%;
+    /* right-side action buttons */
+    .tl-actions {
+      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+    }
+    .tl-check-btn {
+      width: 22px; height: 22px; border-radius: 50%;
       border: 2px solid var(--border);
       display: flex; align-items: center; justify-content: center;
-      font-size: 11px; color: white; flex-shrink: 0;
-      transition: all .2s;
+      font-size: 11px; color: white;
+      cursor: pointer; transition: all .2s;
+      background: transparent;
+      -webkit-tap-highlight-color: transparent;
+      flex-shrink: 0;
     }
-    .tl-item.done .tl-check { background: var(--green); border-color: var(--green); }
+    .tl-item.done .tl-check-btn { background: var(--green); border-color: var(--green); }
 
-    .tl-content { padding-right: 28px; }
+    .tl-map-btn {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #e8f4fd; border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      flex-shrink: 0;
+    }
+    .tl-item:not([data-map]) .tl-map-btn { display: none; }
+
     .tl-time { font-size: 11px; color: var(--muted); font-weight: 600; margin-bottom: 2px; }
     .tl-label { font-size: 15px; font-weight: 600; line-height: 1.3; }
     .tl-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
@@ -194,7 +204,7 @@
       display: inline-flex; align-items: center;
       border-radius: 6px; padding: 1px 6px;
       font-size: 10px; font-weight: 700;
-      margin-left: 5px; vertical-align: middle;
+      margin-left: 4px; vertical-align: middle;
     }
     .b-flight { background: var(--red-light);   color: var(--red); }
     .b-hotel  { background: var(--gold-light);  color: var(--gold); }
@@ -202,7 +212,7 @@
     .b-food   { background: var(--green-light); color: var(--green); }
     .b-shop   { background: #f5eafa;            color: #9b59b6; }
 
-    /* ── Checklist ── */
+    /* ── Shopping checklist ── */
     .check-group { margin-bottom: 24px; }
     .check-group-title {
       font-size: 12px; font-weight: 700;
@@ -231,17 +241,68 @@
     .check-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
     .check-icon { font-size: 22px; flex-shrink: 0; }
 
-    /* ── Nav button ── */
-    .next-btn {
-      display: block; text-align: center;
-      margin: 32px auto 0;
-      padding: 14px 32px;
-      background: var(--navy); color: white;
-      border-radius: 100px; text-decoration: none;
-      font-size: 14px; font-weight: 700;
-      box-shadow: 0 4px 12px rgba(26,35,64,.25);
+    /* ── Map bottom sheet ── */
+    .map-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,.5);
+      align-items: flex-end;
+      animation: fadeIn .2s ease;
+    }
+    .map-overlay.open { display: flex; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .map-sheet {
+      width: 100%;
+      background: var(--white);
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+      animation: slideUp .25s ease;
+      max-height: 88vh;
+      display: flex; flex-direction: column;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+
+    .map-sheet-handle {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .map-sheet-title {
+      font-size: 15px; font-weight: 700;
+      flex: 1; margin-right: 8px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .map-sheet-close {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: #f0f2f5; border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; cursor: pointer; flex-shrink: 0;
       -webkit-tap-highlight-color: transparent;
-      max-width: 260px;
+    }
+    .map-sheet-actions {
+      display: flex; gap: 8px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .map-open-link {
+      flex: 1; padding: 9px;
+      background: var(--navy); color: white;
+      border-radius: 10px; text-align: center;
+      font-size: 13px; font-weight: 700;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .map-frame-wrap {
+      flex: 1; min-height: 320px;
+      overflow: hidden;
+    }
+    .map-frame-wrap iframe {
+      width: 100%; height: 100%; min-height: 320px;
+      border: none; display: block;
     }
 
     footer {
@@ -370,8 +431,6 @@
       <span class="info-val" style="color:var(--green)">✅ 예약 확정</span>
     </div>
   </div>
-
-  <a class="next-btn" href="#day1">1일차 일정 보기 →</a>
 </section>
 
 <!-- ════════════════ 1일차 ════════════════ -->
@@ -383,90 +442,64 @@
   </div>
   <div class="card">
     <div class="timeline">
-      <div class="tl-item" onclick="toggleTl(this)">
+      <div class="tl-item" data-map="김포국제공항" data-map-q="김포국제공항">
         <div class="tl-dot flight"></div>
-        <div class="tl-check"></div>
-        <div class="tl-content">
-          <div class="tl-time">07:00</div>
-          <div class="tl-label">김포공항 도착 <span class="badge b-flight">✈ 항공</span></div>
-          <div class="tl-sub">국제선 터미널 · 출발 1시간 전 도착 권장</div>
-        </div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">07:00</div>
+        <div class="tl-label">김포공항 도착 <span class="badge b-flight">✈ 항공</span></div>
+        <div class="tl-sub">국제선 터미널 · 출발 1시간 전 도착 권장</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
+      <div class="tl-item" data-map="도쿄 하네다 공항" data-map-q="Tokyo Haneda Airport HND">
         <div class="tl-dot flight"></div>
-        <div class="tl-check"></div>
-        <div class="tl-content">
-          <div class="tl-time">08:00</div>
-          <div class="tl-label">JL090 출발 <span class="badge b-flight">✈ 항공</span></div>
-          <div class="tl-sub">GMP → HND T3</div>
-        </div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">08:00 – 10:15</div>
+        <div class="tl-label">JL090 · GMP → HND T3 <span class="badge b-flight">✈ 항공</span></div>
+        <div class="tl-sub">비행 2시간 15분 · 직항</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot flight"></div>
-        <div class="tl-check"></div>
-        <div class="tl-content">
-          <div class="tl-time">10:15</div>
-          <div class="tl-label">하네다 도착 <span class="badge b-flight">✈ 항공</span></div>
-          <div class="tl-sub">입국 심사 · 짐 수령 (40~60분 소요)</div>
-        </div>
-      </div>
-      <div class="tl-item" onclick="toggleTl(this)">
+      <div class="tl-item" data-map="긴자" data-map-q="Ginza Tokyo">
         <div class="tl-dot spot"></div>
-        <div class="tl-check"></div>
-        <div class="tl-content">
-          <div class="tl-time">11:30</div>
-          <div class="tl-label">도쿄 지하철 패스 구입 <span class="badge b-spot">🚇 교통</span></div>
-          <div class="tl-sub">하네다 공항 B1 · 긴자까지 약 40분</div>
-        </div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">11:30</div>
+        <div class="tl-label">도쿄 지하철 패스 구입 <span class="badge b-spot">🚇 교통</span></div>
+        <div class="tl-sub">하네다 공항 B1 · 긴자까지 약 40분</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
+      <div class="tl-item">
         <div class="tl-dot food"></div>
-        <div class="tl-check"></div>
-        <div class="tl-content">
-          <div class="tl-time">12:30</div>
-          <div class="tl-label">점심 <span class="badge b-food">🍜 식사</span></div>
-          <div class="tl-sub">긴자 주변 첫 도쿄 식사</div>
-        </div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">12:30</div>
+        <div class="tl-label">점심 <span class="badge b-food">🍜 식사</span></div>
+        <div class="tl-sub">긴자 주변 첫 도쿄 식사</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
+      <div class="tl-item" data-map="긴자식스" data-map-q="GINZA SIX">
         <div class="tl-dot spot"></div>
-        <div class="tl-check"></div>
-        <div class="tl-content">
-          <div class="tl-time">14:00</div>
-          <div class="tl-label">긴자 거리 산책 <span class="badge b-spot">🏙 관광</span></div>
-          <div class="tl-sub">긴자식스 · 마로니에게이트</div>
-        </div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">14:00</div>
+        <div class="tl-label">긴자 거리 산책 <span class="badge b-spot">🏙 관광</span></div>
+        <div class="tl-sub">긴자식스 · 마로니에게이트</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
+      <div class="tl-item" data-map="the square hotel GINZA" data-map-q="the square hotel GINZA Tokyo">
         <div class="tl-dot hotel"></div>
-        <div class="tl-check"></div>
-        <div class="tl-content">
-          <div class="tl-time">15:00</div>
-          <div class="tl-label">호텔 체크인 <span class="badge b-hotel">🏨 숙소</span></div>
-          <div class="tl-sub">the square hotel GINZA</div>
-        </div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">15:00</div>
+        <div class="tl-label">호텔 체크인 <span class="badge b-hotel">🏨 숙소</span></div>
+        <div class="tl-sub">the square hotel GINZA</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
+      <div class="tl-item" data-map="무인양품 긴자" data-map-q="MUJI 無印良品 銀座">
         <div class="tl-dot shop"></div>
-        <div class="tl-check"></div>
-        <div class="tl-content">
-          <div class="tl-time">16:30</div>
-          <div class="tl-label">무인양품 긴자 본점 <span class="badge b-shop">🛍 쇼핑</span></div>
-          <div class="tl-sub">MUJI Ginza · 지상 6층</div>
-        </div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">16:30</div>
+        <div class="tl-label">무인양품 긴자 본점 <span class="badge b-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">MUJI Ginza · 지상 6층</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
+      <div class="tl-item">
         <div class="tl-dot food"></div>
-        <div class="tl-check"></div>
-        <div class="tl-content">
-          <div class="tl-time">19:00</div>
-          <div class="tl-label">저녁 <span class="badge b-food">🍣 식사</span></div>
-          <div class="tl-sub">긴자 스시 or 이자카야</div>
-        </div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">19:00</div>
+        <div class="tl-label">저녁 <span class="badge b-food">🍣 식사</span></div>
+        <div class="tl-sub">긴자 스시 or 이자카야</div>
       </div>
     </div>
   </div>
-  <a class="next-btn" href="#day2">2일차 →</a>
 </section>
 
 <!-- ════════════════ 2일차 ════════════════ -->
@@ -478,51 +511,57 @@
   </div>
   <div class="card">
     <div class="timeline">
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">08:00</div>
-          <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
-          <div class="tl-sub">호텔 조식 or 긴자 베이커리</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">08:00</div>
+        <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
+        <div class="tl-sub">호텔 조식 or 긴자 베이커리</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">09:30</div>
-          <div class="tl-label">아사쿠사 센소지 <span class="badge b-spot">⛩ 관광</span></div>
-          <div class="tl-sub">도쿄 최고(最古) 사원 · 나카미세도리</div></div>
+      <div class="tl-item" data-map="아사쿠사 센소지" data-map-q="浅草寺 Senso-ji Temple Asakusa">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">09:30</div>
+        <div class="tl-label">아사쿠사 센소지 <span class="badge b-spot">⛩ 관광</span></div>
+        <div class="tl-sub">도쿄 최고(最古) 사원 · 나카미세도리</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">11:00</div>
-          <div class="tl-label">도쿄 스카이트리 <span class="badge b-spot">🗼 관광</span></div>
-          <div class="tl-sub">전망대 입장 · 사전 예약 권장</div></div>
+      <div class="tl-item" data-map="도쿄 스카이트리" data-map-q="Tokyo Skytree 東京スカイツリー">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">11:00</div>
+        <div class="tl-label">도쿄 스카이트리 <span class="badge b-spot">🗼 관광</span></div>
+        <div class="tl-sub">전망대 입장 · 사전 예약 권장</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">13:00</div>
-          <div class="tl-label">점심 <span class="badge b-food">🍱 식사</span></div>
-          <div class="tl-sub">아사쿠사 멘치카츠 or 소바</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">13:00</div>
+        <div class="tl-label">점심 <span class="badge b-food">🍱 식사</span></div>
+        <div class="tl-sub">아사쿠사 멘치카츠 or 소바</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">14:30</div>
-          <div class="tl-label">우에노 공원 <span class="badge b-spot">🌳 관광</span></div>
-          <div class="tl-sub">도쿄 국립박물관 (선택)</div></div>
+      <div class="tl-item" data-map="우에노 공원" data-map-q="上野公園 Ueno Park Tokyo">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">14:30</div>
+        <div class="tl-label">우에노 공원 <span class="badge b-spot">🌳 관광</span></div>
+        <div class="tl-sub">도쿄 국립박물관 (선택)</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot shop"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">16:30</div>
-          <div class="tl-label">아키하바라 <span class="badge b-shop">🛍 쇼핑</span></div>
-          <div class="tl-sub">전자상가 · 서브컬처 거리</div></div>
+      <div class="tl-item" data-map="아키하바라" data-map-q="秋葉原 Akihabara Electric Town Tokyo">
+        <div class="tl-dot shop"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">16:30</div>
+        <div class="tl-label">아키하바라 <span class="badge b-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">전자상가 · 서브컬처 거리</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">19:00</div>
-          <div class="tl-label">저녁 <span class="badge b-food">🍜 식사</span></div>
-          <div class="tl-sub">아키하바라 라멘</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">19:00</div>
+        <div class="tl-label">저녁 <span class="badge b-food">🍜 식사</span></div>
+        <div class="tl-sub">아키하바라 라멘</div>
       </div>
     </div>
   </div>
-  <a class="next-btn" href="#day3">3일차 →</a>
 </section>
 
 <!-- ════════════════ 3일차 ════════════════ -->
@@ -534,51 +573,57 @@
   </div>
   <div class="card">
     <div class="timeline">
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">09:00</div>
-          <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
-          <div class="tl-sub">카페 or 편의점 모닝</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">09:00</div>
+        <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
+        <div class="tl-sub">카페 or 편의점 모닝</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">10:00</div>
-          <div class="tl-label">메이지 신궁 <span class="badge b-spot">⛩ 관광</span></div>
-          <div class="tl-sub">하라주쿠역 인근 · 도쿄 최대 신사</div></div>
+      <div class="tl-item" data-map="메이지 신궁" data-map-q="明治神宮 Meiji Shrine Tokyo">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">10:00</div>
+        <div class="tl-label">메이지 신궁 <span class="badge b-spot">⛩ 관광</span></div>
+        <div class="tl-sub">하라주쿠역 인근 · 도쿄 최대 신사</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot shop"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">11:30</div>
-          <div class="tl-label">다케시타도리 · 오모테산도 <span class="badge b-shop">🛍 쇼핑</span></div>
-          <div class="tl-sub">GU 플래그십 · 하라주쿠 패션</div></div>
+      <div class="tl-item" data-map="다케시타도리" data-map-q="竹下通り Takeshita Street Harajuku Tokyo">
+        <div class="tl-dot shop"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">11:30</div>
+        <div class="tl-label">다케시타도리 · 오모테산도 <span class="badge b-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">GU 플래그십 · 하라주쿠 패션</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">13:00</div>
-          <div class="tl-label">점심 <span class="badge b-food">🥗 식사</span></div>
-          <div class="tl-sub">오모테산도 카페 or 하라주쿠 크레페</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">13:00</div>
+        <div class="tl-label">점심 <span class="badge b-food">🥗 식사</span></div>
+        <div class="tl-sub">오모테산도 카페 or 하라주쿠 크레페</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">14:30</div>
-          <div class="tl-label">시부야 스크램블 교차로 <span class="badge b-spot">🏙 관광</span></div>
-          <div class="tl-sub">시부야 스카이 전망대 (사전 예약)</div></div>
+      <div class="tl-item" data-map="시부야 스크램블 교차로" data-map-q="渋谷スクランブル交差点 Shibuya Scramble Crossing">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">14:30</div>
+        <div class="tl-label">시부야 스크램블 교차로 <span class="badge b-spot">🏙 관광</span></div>
+        <div class="tl-sub">시부야 스카이 전망대 (사전 예약)</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot shop"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">16:00</div>
-          <div class="tl-label">시부야 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
-          <div class="tl-sub">시부야 히카리에 · GU · UNIQLO</div></div>
+      <div class="tl-item" data-map="시부야 히카리에" data-map-q="渋谷ヒカリエ Shibuya Hikarie">
+        <div class="tl-dot shop"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">16:00</div>
+        <div class="tl-label">시부야 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">시부야 히카리에 · GU · UNIQLO</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">19:00</div>
-          <div class="tl-label">저녁 <span class="badge b-food">🍖 식사</span></div>
-          <div class="tl-sub">시부야 야키니쿠 or 이자카야</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">19:00</div>
+        <div class="tl-label">저녁 <span class="badge b-food">🍖 식사</span></div>
+        <div class="tl-sub">시부야 야키니쿠 or 이자카야</div>
       </div>
     </div>
   </div>
-  <a class="next-btn" href="#day4">4일차 →</a>
 </section>
 
 <!-- ════════════════ 4일차 ════════════════ -->
@@ -590,56 +635,63 @@
   </div>
   <div class="card">
     <div class="timeline">
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">09:00</div>
-          <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">09:00</div>
+        <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">10:00</div>
-          <div class="tl-label">도쿄도청 무료 전망대 <span class="badge b-spot">🏙 관광</span></div>
-          <div class="tl-sub">신주쿠 · 날씨 좋으면 후지산 조망 가능</div></div>
+      <div class="tl-item" data-map="도쿄도청 전망대" data-map-q="東京都庁 Tokyo Metropolitan Government Building Shinjuku">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">10:00</div>
+        <div class="tl-label">도쿄도청 무료 전망대 <span class="badge b-spot">🏙 관광</span></div>
+        <div class="tl-sub">신주쿠 · 날씨 좋으면 후지산 조망 가능</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot shop"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">11:30</div>
-          <div class="tl-label">신주쿠 알펜도쿄 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
-          <div class="tl-sub">아웃도어 전문점 · 몽벨 코너 필수 확인</div></div>
+      <div class="tl-item" data-map="신주쿠 알펜도쿄" data-map-q="Alpen Tokyo アルペン 新宿">
+        <div class="tl-dot shop"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">11:30</div>
+        <div class="tl-label">신주쿠 알펜도쿄 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">아웃도어 전문점 · 몽벨 코너 필수 확인</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">13:30</div>
-          <div class="tl-label">점심 <span class="badge b-food">🍜 식사</span></div>
-          <div class="tl-sub">신주쿠 라멘 · 이치란 or 후우린</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">13:30</div>
+        <div class="tl-label">점심 <span class="badge b-food">🍜 식사</span></div>
+        <div class="tl-sub">신주쿠 라멘 · 이치란 or 후우린</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">15:00</div>
-          <div class="tl-label">신주쿠 교엔 <span class="badge b-spot">🌳 관광</span></div>
-          <div class="tl-sub">도쿄 최대 정원 · 산책 추천</div></div>
+      <div class="tl-item" data-map="신주쿠 교엔" data-map-q="新宿御苑 Shinjuku Gyoen National Garden">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">15:00</div>
+        <div class="tl-label">신주쿠 교엔 <span class="badge b-spot">🌳 관광</span></div>
+        <div class="tl-sub">도쿄 최대 정원 · 산책 추천</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot shop"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">16:30</div>
-          <div class="tl-label">신주쿠 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
-          <div class="tl-sub">이세탄 · 타카시마야 · 루미네</div></div>
+      <div class="tl-item" data-map="신주쿠 이세탄" data-map-q="伊勢丹新宿店 Isetan Shinjuku">
+        <div class="tl-dot shop"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">16:30</div>
+        <div class="tl-label">신주쿠 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">이세탄 · 타카시마야 · 루미네</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">18:30</div>
-          <div class="tl-label">오모이데요코초 야경 <span class="badge b-spot">🌃 야경</span></div>
-          <div class="tl-sub">신주쿠 골든가이 · 야간 산책</div></div>
+      <div class="tl-item" data-map="오모이데요코초" data-map-q="思い出横丁 Omoide Yokocho Shinjuku">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">18:30</div>
+        <div class="tl-label">오모이데요코초 야경 <span class="badge b-spot">🌃 야경</span></div>
+        <div class="tl-sub">신주쿠 골든가이 · 야간 산책</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">19:30</div>
-          <div class="tl-label">저녁 <span class="badge b-food">🍢 식사</span></div>
-          <div class="tl-sub">오모이데요코초 꼬치구이</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">19:30</div>
+        <div class="tl-label">저녁 <span class="badge b-food">🍢 식사</span></div>
+        <div class="tl-sub">오모이데요코초 꼬치구이</div>
       </div>
     </div>
   </div>
-  <a class="next-btn" href="#day5">5일차 →</a>
 </section>
 
 <!-- ════════════════ 5일차 ════════════════ -->
@@ -651,51 +703,57 @@
   </div>
   <div class="card">
     <div class="timeline">
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">09:00</div>
-          <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
-          <div class="tl-sub">긴자 베이커리 카페</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">09:00</div>
+        <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
+        <div class="tl-sub">긴자 베이커리 카페</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot shop"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">10:30</div>
-          <div class="tl-label">몽벨 교바시 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
-          <div class="tl-sub">캠핑체어 · 보냉백 · 선글라스 구입</div></div>
+      <div class="tl-item" data-map="몽벨 교바시" data-map-q="mont-bell モンベル 京橋 Tokyo">
+        <div class="tl-dot shop"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">10:30</div>
+        <div class="tl-label">몽벨 교바시 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">캠핑체어 · 보냉백 · 선글라스 구입</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">12:00</div>
-          <div class="tl-label">교바시 이세히로 야키토리동 🎯 <span class="badge b-food">🍱 식사</span></div>
-          <div class="tl-sub">교바시 명물 야키토리덮밥 · 줄서기 각오</div></div>
+      <div class="tl-item" data-map="교바시 이세히로" data-map-q="伊勢廣 京橋本店 Isehiro Kyobashi Tokyo">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">12:00</div>
+        <div class="tl-label">교바시 이세히로 야키토리동 🎯 <span class="badge b-food">🍱 식사</span></div>
+        <div class="tl-sub">교바시 명물 야키토리덮밥 · 줄서기 각오</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">14:00</div>
-          <div class="tl-label">치쿠요테이 🎯 <span class="badge b-food">🍡 카페</span></div>
-          <div class="tl-sub">화과자 디저트</div></div>
+      <div class="tl-item" data-map="치쿠요테이" data-map-q="竹葉亭 Chikuyotei Tokyo">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">14:00</div>
+        <div class="tl-label">치쿠요테이 🎯 <span class="badge b-food">🍡 카페</span></div>
+        <div class="tl-sub">화과자 디저트</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">15:00</div>
-          <div class="tl-label">도쿄역 · 마루노우치 <span class="badge b-spot">🏛 관광</span></div>
-          <div class="tl-sub">도쿄역 붉은 벽돌 건물 · 마루빌딩</div></div>
+      <div class="tl-item" data-map="도쿄역" data-map-q="東京駅 Tokyo Station">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">15:00</div>
+        <div class="tl-label">도쿄역 · 마루노우치 <span class="badge b-spot">🏛 관광</span></div>
+        <div class="tl-sub">도쿄역 붉은 벽돌 건물 · 마루빌딩</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot shop"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">16:30</div>
-          <div class="tl-label">무인양품 유락초 <span class="badge b-shop">🛍 쇼핑</span></div>
-          <div class="tl-sub">향초 · 잠옷 마지막 MUJI 쇼핑</div></div>
+      <div class="tl-item" data-map="무인양품 유락초" data-map-q="無印良品 有楽町 MUJI Yurakucho Tokyo">
+        <div class="tl-dot shop"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">16:30</div>
+        <div class="tl-label">무인양품 유락초 <span class="badge b-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">향초 · 잠옷 마지막 MUJI 쇼핑</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">19:00</div>
-          <div class="tl-label">마지막 저녁 <span class="badge b-food">🍣 식사</span></div>
-          <div class="tl-sub">긴자 오마카세 스시 or 텐동</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">19:00</div>
+        <div class="tl-label">마지막 저녁 <span class="badge b-food">🍣 식사</span></div>
+        <div class="tl-sub">긴자 오마카세 스시 or 텐동</div>
       </div>
     </div>
   </div>
-  <a class="next-btn" href="#day6">6일차 →</a>
 </section>
 
 <!-- ════════════════ 6일차 ════════════════ -->
@@ -707,56 +765,63 @@
   </div>
   <div class="card">
     <div class="timeline">
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">08:00</div>
-          <div class="tl-label">조식 &amp; 짐 정리 <span class="badge b-food">☕ 아침</span></div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">08:00</div>
+        <div class="tl-label">조식 &amp; 짐 정리 <span class="badge b-food">☕ 아침</span></div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot hotel"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">11:00</div>
-          <div class="tl-label">호텔 체크아웃 <span class="badge b-hotel">🏨 숙소</span></div>
-          <div class="tl-sub">짐 보관 가능 여부 프런트 확인</div></div>
+      <div class="tl-item" data-map="the square hotel GINZA" data-map-q="the square hotel GINZA Tokyo">
+        <div class="tl-dot hotel"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">11:00</div>
+        <div class="tl-label">호텔 체크아웃 <span class="badge b-hotel">🏨 숙소</span></div>
+        <div class="tl-sub">짐 보관 가능 여부 프런트 확인</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">11:30</div>
-          <div class="tl-label">마지막 산책 <span class="badge b-spot">🌸 관광</span></div>
-          <div class="tl-sub">하마리큐 정원 or 긴자 주변</div></div>
+      <div class="tl-item" data-map="하마리큐 정원" data-map-q="浜離宮恩賜庭園 Hamarikyu Gardens Tokyo">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">11:30</div>
+        <div class="tl-label">마지막 산책 <span class="badge b-spot">🌸 관광</span></div>
+        <div class="tl-sub">하마리큐 정원 or 긴자 주변</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot food"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">13:00</div>
-          <div class="tl-label">점심 <span class="badge b-food">🍜 식사</span></div>
-          <div class="tl-sub">도쿄 마지막 식사</div></div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">13:00</div>
+        <div class="tl-label">점심 <span class="badge b-food">🍜 식사</span></div>
+        <div class="tl-sub">도쿄 마지막 식사</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot spot"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">15:00</div>
-          <div class="tl-label">하네다 공항 이동 <span class="badge b-spot">🚇 교통</span></div>
-          <div class="tl-sub">긴자역 → 하네다 약 30~40분</div></div>
+      <div class="tl-item" data-map="도쿄 하네다 공항" data-map-q="Tokyo Haneda Airport HND">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">15:00</div>
+        <div class="tl-label">하네다 공항 이동 <span class="badge b-spot">🚇 교통</span></div>
+        <div class="tl-sub">긴자역 → 하네다 약 30~40분</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot shop"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">17:00</div>
-          <div class="tl-label">면세점 &amp; 탑승 수속 <span class="badge b-shop">🛍 면세</span></div>
-          <div class="tl-sub">탑승 2시간 전 도착 권장</div></div>
+      <div class="tl-item">
+        <div class="tl-dot shop"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">17:00</div>
+        <div class="tl-label">면세점 &amp; 탑승 수속 <span class="badge b-shop">🛍 면세</span></div>
+        <div class="tl-sub">탑승 2시간 전 도착 권장</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot flight"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">19:55</div>
-          <div class="tl-label">Korean Air 출발 <span class="badge b-flight">✈ 항공</span></div>
-          <div class="tl-sub">HND → GMP</div></div>
+      <div class="tl-item">
+        <div class="tl-dot flight"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">19:55</div>
+        <div class="tl-label">Korean Air 출발 <span class="badge b-flight">✈ 항공</span></div>
+        <div class="tl-sub">HND → GMP</div>
       </div>
-      <div class="tl-item" onclick="toggleTl(this)">
-        <div class="tl-dot flight"></div><div class="tl-check"></div>
-        <div class="tl-content"><div class="tl-time">22:15</div>
-          <div class="tl-label">서울 김포 도착 🏠</div>
-          <div class="tl-sub">입국 심사 후 귀가</div></div>
+      <div class="tl-item">
+        <div class="tl-dot flight"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+        <div class="tl-time">22:15</div>
+        <div class="tl-label">서울 김포 도착 🏠</div>
+        <div class="tl-sub">입국 심사 후 귀가</div>
       </div>
     </div>
   </div>
-  <a class="next-btn" href="#checklist">쇼핑 체크리스트 →</a>
 </section>
 
 <!-- ════════════════ 쇼핑 체크리스트 ════════════════ -->
@@ -822,23 +887,66 @@
       <div><div class="check-label">무인양품 잠옷</div><div class="check-sub">MUJI Pajamas</div></div>
     </div>
   </div>
-
-  <a class="next-btn" href="#overview" style="background:var(--red)">↑ 처음으로</a>
 </section>
 
-<footer>
-  🗼 도쿄 여행 2026 · 6.3(수) – 6.8(월)
-</footer>
+<footer>🗼 도쿄 여행 2026 · 6.3(수) – 6.8(월)</footer>
+
+<!-- ════════════════ 지도 오버레이 ════════════════ -->
+<div class="map-overlay" id="mapOverlay" onclick="handleOverlayClick(event)">
+  <div class="map-sheet" id="mapSheet">
+    <div class="map-sheet-handle">
+      <div class="map-sheet-title" id="mapTitle"></div>
+      <button class="map-sheet-close" onclick="closeMap()">✕</button>
+    </div>
+    <div class="map-sheet-actions">
+      <a class="map-open-link" id="mapOpenLink" target="_blank" rel="noopener">
+        Google Maps 앱으로 열기 ↗
+      </a>
+    </div>
+    <div class="map-frame-wrap">
+      <iframe id="mapFrame" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</div>
 
 <script>
-  /* ── Timeline item toggle ── */
-  function toggleTl(el) {
-    el.classList.toggle('done');
-    el.querySelector('.tl-check').textContent = el.classList.contains('done') ? '✓' : '';
+  /* ── Map overlay ── */
+  function openMap(item) {
+    const q     = item.getAttribute('data-map-q');
+    const title = item.getAttribute('data-map');
+    if (!q) return;
+
+    document.getElementById('mapTitle').textContent = title;
+
+    const encoded = encodeURIComponent(q);
+    document.getElementById('mapFrame').src =
+      'https://maps.google.com/maps?q=' + encoded + '&output=embed&hl=ko&z=16';
+    document.getElementById('mapOpenLink').href =
+      'https://maps.google.com/maps?q=' + encoded;
+
+    document.getElementById('mapOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMap() {
+    document.getElementById('mapOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+    // slight delay so sheet animates out before clearing src
+    setTimeout(() => { document.getElementById('mapFrame').src = ''; }, 300);
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('mapOverlay')) closeMap();
+  }
+
+  /* ── Timeline check ── */
+  function toggleTl(item) {
+    item.classList.toggle('done');
+    item.querySelector('.tl-check-btn').textContent = item.classList.contains('done') ? '✓' : '';
     saveAll();
   }
 
-  /* ── Shopping checklist toggle ── */
+  /* ── Shopping checklist ── */
   function toggleCheck(el) {
     el.classList.toggle('done');
     el.querySelector('.check-box').textContent = el.classList.contains('done') ? '✓' : '';
@@ -846,19 +954,21 @@
   }
 
   function saveAll() {
-    const tl = Array.from(document.querySelectorAll('.tl-item')).map(i => i.classList.contains('done'));
-    const ch = Array.from(document.querySelectorAll('.check-item')).map(i => i.classList.contains('done'));
-    localStorage.setItem('tokyo26-tl', JSON.stringify(tl));
-    localStorage.setItem('tokyo26-ch', JSON.stringify(ch));
+    localStorage.setItem('t26-tl', JSON.stringify(
+      Array.from(document.querySelectorAll('.tl-item')).map(i => i.classList.contains('done'))
+    ));
+    localStorage.setItem('t26-ch', JSON.stringify(
+      Array.from(document.querySelectorAll('.check-item')).map(i => i.classList.contains('done'))
+    ));
   }
 
   function loadAll() {
-    const tl = localStorage.getItem('tokyo26-tl');
+    const tl = localStorage.getItem('t26-tl');
     if (tl) JSON.parse(tl).forEach((done, i) => {
       const el = document.querySelectorAll('.tl-item')[i];
-      if (el && done) { el.classList.add('done'); el.querySelector('.tl-check').textContent = '✓'; }
+      if (el && done) { el.classList.add('done'); el.querySelector('.tl-check-btn').textContent = '✓'; }
     });
-    const ch = localStorage.getItem('tokyo26-ch');
+    const ch = localStorage.getItem('t26-ch');
     if (ch) JSON.parse(ch).forEach((done, i) => {
       const el = document.querySelectorAll('.check-item')[i];
       if (el && done) { el.classList.add('done'); el.querySelector('.check-box').textContent = '✓'; }
@@ -866,22 +976,19 @@
   }
   loadAll();
 
-  /* ── Active nav highlight ── */
+  /* ── Active nav on scroll ── */
   const sections = document.querySelectorAll('.page-section');
   const navBtns  = document.querySelectorAll('.nav-btn');
 
   function updateNav() {
-    let current = 0;
-    sections.forEach((sec, i) => {
-      if (window.scrollY >= sec.offsetTop - 62) current = i;
-    });
+    let cur = 0;
+    sections.forEach((s, i) => { if (window.scrollY >= s.offsetTop - 62) cur = i; });
     navBtns.forEach(b => b.classList.remove('active'));
-    if (navBtns[current]) {
-      navBtns[current].classList.add('active');
-      navBtns[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    if (navBtns[cur]) {
+      navBtns[cur].classList.add('active');
+      navBtns[cur].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
   }
-
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 </script>
