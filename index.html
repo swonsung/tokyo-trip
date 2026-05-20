@@ -699,7 +699,7 @@
   <div class="section-header">
     <div class="section-day-badge">DAY 5</div>
     <div class="section-date">6월 7일 (일)</div>
-    <div class="section-theme">교바시 · 몽벨 · 맛집</div>
+    <div class="section-theme">교바시 · 몽벨 · 오다이바</div>
   </div>
   <div class="card">
     <div class="timeline">
@@ -745,12 +745,26 @@
         <div class="tl-label">무인양품 유락초 <span class="badge b-shop">🛍 쇼핑</span></div>
         <div class="tl-sub">향초 · 잠옷 마지막 MUJI 쇼핑</div>
       </div>
-      <div class="tl-item">
+      <div class="tl-item" data-map="신바시역" data-map-q="新橋駅 Shimbashi Station Tokyo">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">17:30</div>
+        <div class="tl-label">신바시 → 유리카모메 → 오다이바 <span class="badge b-spot">🚝 교통</span></div>
+        <div class="tl-sub">유락초에서 신바시역 도보 5분 · 유리카모메 약 15분</div>
+      </div>
+      <div class="tl-item" data-map="오다이바" data-map-q="お台場 Odaiba Tokyo">
+        <div class="tl-dot spot"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">18:00</div>
+        <div class="tl-label">오다이바 산책 <span class="badge b-spot">🌅 관광</span></div>
+        <div class="tl-sub">레인보우브리지 야경 · 다이바시티 · 덱스 도쿄 비치</div>
+      </div>
+      <div class="tl-item" data-map="다이바시티 도쿄 플라자" data-map-q="ダイバーシティ東京 DiverCity Tokyo Plaza Odaiba">
         <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">19:00</div>
-        <div class="tl-label">마지막 저녁 <span class="badge b-food">🍣 식사</span></div>
-        <div class="tl-sub">긴자 오마카세 스시 or 텐동</div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">19:30</div>
+        <div class="tl-label">오다이바 저녁 <span class="badge b-food">🍣 식사</span></div>
+        <div class="tl-sub">다이바시티 레스토랑 or 덱스 도쿄 비치</div>
       </div>
     </div>
   </div>
@@ -761,7 +775,7 @@
   <div class="section-header">
     <div class="section-day-badge">DAY 6</div>
     <div class="section-date">6월 8일 (월)</div>
-    <div class="section-theme">체크아웃 · 귀국</div>
+    <div class="section-theme">체크아웃 · 몽벨 타카나와 · 귀국</div>
   </div>
   <div class="card">
     <div class="timeline">
@@ -792,12 +806,19 @@
         <div class="tl-label">점심 <span class="badge b-food">🍜 식사</span></div>
         <div class="tl-sub">도쿄 마지막 식사</div>
       </div>
+      <div class="tl-item" data-map="몽벨 타카나와" data-map-q="mont-bell モンベル 高輪 Takanawa Tokyo">
+        <div class="tl-dot shop"></div>
+        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+        <div class="tl-time">14:30</div>
+        <div class="tl-label">몽벨 타카나와 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+        <div class="tl-sub">시나가와 근처 · 마지막 몽벨 체크</div>
+      </div>
       <div class="tl-item" data-map="도쿄 하네다 공항" data-map-q="Tokyo Haneda Airport HND">
         <div class="tl-dot spot"></div>
         <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">15:00</div>
+        <div class="tl-time">15:30</div>
         <div class="tl-label">하네다 공항 이동 <span class="badge b-spot">🚇 교통</span></div>
-        <div class="tl-sub">긴자역 → 하네다 약 30~40분</div>
+        <div class="tl-sub">시나가와역 → 케이큐 공항선 → 하네다 약 13분</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot shop"></div>
