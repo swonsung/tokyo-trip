@@ -6,124 +6,51 @@
   <title>도쿄 여행 2026 · 6/3–6/8</title>
   <style>
     :root {
-      --red: #c0392b;
-      --red-light: #fdf0ef;
-      --navy: #1a2340;
-      --navy-mid: #2d4270;
-      --gold: #c9942a;
-      --gold-light: #fdf6e3;
-      --green: #27ae60;
-      --green-light: #eafaf1;
-      --border: #e9ecef;
-      --white: #ffffff;
-      --text: #212529;
-      --muted: #868e96;
+      --red: #c0392b; --red-light: #fdf0ef;
+      --navy: #1a2340; --navy-mid: #2d4270;
+      --gold: #c9942a; --gold-light: #fdf6e3;
+      --green: #27ae60; --green-light: #eafaf1;
+      --purple: #9b59b6; --purple-light: #f5eafa;
+      --teal: #16a085; --teal-light: #e8f8f5;
+      --border: #e9ecef; --white: #fff;
+      --text: #212529; --muted: #868e96;
       --nav-h: 52px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: #f0f2f5; color: var(--text); font-size: 15px; line-height: 1.55; }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-      background: #f0f2f5;
-      color: var(--text);
-      font-size: 15px;
-      line-height: 1.55;
-    }
-
-    /* ── Hero ── */
-    .hero {
-      background: linear-gradient(155deg, var(--navy) 0%, var(--navy-mid) 55%, var(--red) 100%);
-      color: white;
-      padding: 64px 24px 48px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '東京';
-      position: absolute;
-      font-size: 200px; font-weight: 900; opacity: .05;
-      top: -30px; right: -20px; line-height: 1;
-      pointer-events: none;
-    }
+    /* Hero */
+    .hero { background: linear-gradient(155deg, var(--navy) 0%, var(--navy-mid) 55%, var(--red) 100%); color: white; padding: 64px 24px 48px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: '東京'; position: absolute; font-size: 200px; font-weight: 900; opacity: .05; top: -30px; right: -20px; line-height: 1; pointer-events: none; }
     .hero-icon { font-size: 44px; margin-bottom: 10px; }
-    .hero h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.5px; }
-    .hero-period {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,.15);
-      border-radius: 100px;
-      padding: 7px 20px;
-      margin-top: 14px;
-      font-size: 14px; font-weight: 600;
-    }
+    .hero h1 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; }
+    .hero-period { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.15); border-radius: 100px; padding: 7px 20px; margin-top: 14px; font-size: 14px; font-weight: 600; }
     .hero-period span { opacity: .65; }
 
-    /* ── Sticky nav ── */
-    .sticky-nav {
-      position: sticky; top: 0; z-index: 200;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    }
-    .nav-inner {
-      display: flex; overflow-x: auto; scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
+    /* Nav */
+    .sticky-nav { position: sticky; top: 0; z-index: 200; background: var(--white); border-bottom: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+    .nav-inner { display: flex; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
     .nav-inner::-webkit-scrollbar { display: none; }
-    .nav-btn {
-      flex: 0 0 auto;
-      padding: 0 14px; height: var(--nav-h);
-      display: flex; align-items: center;
-      font-size: 13px; font-weight: 600;
-      color: var(--muted); cursor: pointer;
-      border-bottom: 2px solid transparent;
-      white-space: nowrap; text-decoration: none;
-      transition: color .2s, border-color .2s;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .nav-btn:hover { color: var(--text); }
+    .nav-btn { flex: 0 0 auto; padding: 0 14px; height: var(--nav-h); display: flex; align-items: center; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; text-decoration: none; transition: color .2s, border-color .2s; -webkit-tap-highlight-color: transparent; }
     .nav-btn.active { color: var(--red); border-bottom-color: var(--red); }
 
-    /* ── Page sections ── */
-    .page-section {
-      min-height: 100vh;
-      padding: 32px 16px 64px;
-      scroll-margin-top: var(--nav-h);
-    }
+    /* Sections */
+    .page-section { min-height: 100vh; padding: 32px 16px 64px; scroll-margin-top: var(--nav-h); }
     .page-section:nth-child(odd)  { background: #f0f2f5; }
     .page-section:nth-child(even) { background: #e8eaf0; }
-
     .section-header { text-align: center; margin-bottom: 24px; }
-    .section-day-badge {
-      display: inline-block;
-      background: var(--navy); color: white;
-      border-radius: 12px; padding: 5px 16px;
-      font-size: 12px; font-weight: 700; letter-spacing: .5px;
-      margin-bottom: 8px;
-    }
-    .section-date  { font-size: 22px; font-weight: 800; }
+    .section-day-badge { display: inline-block; background: var(--navy); color: white; border-radius: 12px; padding: 5px 16px; font-size: 12px; font-weight: 700; letter-spacing: .5px; margin-bottom: 8px; }
+    .section-date { font-size: 22px; font-weight: 800; }
     .section-theme { font-size: 14px; color: var(--muted); margin-top: 3px; }
 
-    /* ── Cards ── */
-    .card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    }
-    .card-label {
-      font-size: 11px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .8px;
-      color: var(--muted); margin-bottom: 12px;
-    }
+    /* Card */
+    .card { background: var(--white); border-radius: 16px; padding: 18px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+    .card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin-bottom: 12px; }
 
-    /* ── Flight ── */
+    /* Flight */
     .flight-row { display: flex; align-items: center; margin: 12px 0; }
-    .f-city { flex: 1; }
-    .f-city.r { text-align: right; }
+    .f-city { flex: 1; } .f-city.r { text-align: right; }
     .f-time { font-size: 28px; font-weight: 800; letter-spacing: -1.5px; }
     .f-port { font-size: 11px; color: var(--muted); margin-top: 2px; }
     .f-mid { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0 6px; }
@@ -131,202 +58,84 @@
     .f-line { width: 100%; display: flex; align-items: center; gap: 3px; }
     .f-line-bar { flex: 1; height: 1px; background: var(--border); }
     .f-line-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); }
-
-    .info-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px;
-    }
+    .info-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
     .info-row:last-child { border-bottom: none; }
-    .info-key { color: var(--muted); }
-    .info-val { font-weight: 600; }
+    .info-key { color: var(--muted); } .info-val { font-weight: 600; }
 
-    /* ── Timeline ── */
+    /* Timeline */
     .timeline { position: relative; padding-left: 30px; }
-    .timeline::before {
-      content: ''; position: absolute; left: 10px; top: 6px; bottom: 6px;
-      width: 2px; background: var(--border);
-    }
-    .tl-item {
-      position: relative; margin-bottom: 6px;
-      background: var(--white); border-radius: 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.05);
-      padding: 12px 72px 12px 14px; /* right padding for both buttons */
-      transition: opacity .2s;
-    }
+    .timeline::before { content: ''; position: absolute; left: 10px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+    .tl-item { position: relative; margin-bottom: 6px; background: var(--white); border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.05); padding: 12px 72px 12px 14px; transition: opacity .2s; }
     .tl-item.done { opacity: .38; }
     .tl-item.done .tl-label { text-decoration: line-through; }
+    .tl-item.fixed-event { border-left: 3px solid var(--gold); background: var(--gold-light); }
+    .tl-item.fixed-event .tl-dot { border-color: var(--gold) !important; }
 
-    .tl-dot {
-      position: absolute; left: -24px; top: 18px;
-      width: 12px; height: 12px; border-radius: 50%;
-      border: 2.5px solid; background: white;
-      transition: background .2s;
-    }
+    .tl-dot { position: absolute; left: -24px; top: 18px; width: 12px; height: 12px; border-radius: 50%; border: 2.5px solid; background: white; transition: background .2s; }
     .tl-item.done .tl-dot { background: var(--green) !important; border-color: var(--green) !important; }
     .tl-dot.flight { border-color: var(--red); }
     .tl-dot.hotel  { border-color: var(--gold); }
     .tl-dot.spot   { border-color: var(--navy); }
     .tl-dot.food   { border-color: var(--green); }
-    .tl-dot.shop   { border-color: #9b59b6; }
+    .tl-dot.shop   { border-color: var(--purple); }
+    .tl-dot.cafe   { border-color: var(--teal); }
 
-    /* right-side action buttons */
-    .tl-actions {
-      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 5px;
-    }
-    .tl-check-btn {
-      width: 22px; height: 22px; border-radius: 50%;
-      border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; color: white;
-      cursor: pointer; transition: all .2s;
-      background: transparent;
-      -webkit-tap-highlight-color: transparent;
-      flex-shrink: 0;
-    }
+    .tl-actions { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .tl-check-btn { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; cursor: pointer; transition: all .2s; background: transparent; -webkit-tap-highlight-color: transparent; flex-shrink: 0; }
     .tl-item.done .tl-check-btn { background: var(--green); border-color: var(--green); }
-
-    .tl-map-btn {
-      width: 22px; height: 22px; border-radius: 50%;
-      background: #e8f4fd; border: none;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      flex-shrink: 0;
-    }
+    .tl-map-btn { width: 22px; height: 22px; border-radius: 50%; background: #e8f4fd; border: none; display: flex; align-items: center; justify-content: center; font-size: 12px; cursor: pointer; -webkit-tap-highlight-color: transparent; flex-shrink: 0; }
     .tl-item:not([data-map]) .tl-map-btn { display: none; }
 
     .tl-time { font-size: 11px; color: var(--muted); font-weight: 600; margin-bottom: 2px; }
     .tl-label { font-size: 15px; font-weight: 600; line-height: 1.3; }
     .tl-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
 
-    .badge {
-      display: inline-flex; align-items: center;
-      border-radius: 6px; padding: 1px 6px;
-      font-size: 10px; font-weight: 700;
-      margin-left: 4px; vertical-align: middle;
-    }
-    .b-flight { background: var(--red-light);   color: var(--red); }
-    .b-hotel  { background: var(--gold-light);  color: var(--gold); }
-    .b-spot   { background: #eef0f6;            color: var(--navy); }
-    .b-food   { background: var(--green-light); color: var(--green); }
-    .b-shop   { background: #f5eafa;            color: #9b59b6; }
+    .badge { display: inline-flex; align-items: center; border-radius: 6px; padding: 1px 6px; font-size: 10px; font-weight: 700; margin-left: 4px; vertical-align: middle; }
+    .b-flight { background: var(--red-light);    color: var(--red); }
+    .b-hotel  { background: var(--gold-light);   color: var(--gold); }
+    .b-spot   { background: #eef0f6;             color: var(--navy); }
+    .b-food   { background: var(--green-light);  color: var(--green); }
+    .b-shop   { background: var(--purple-light); color: var(--purple); }
+    .b-cafe   { background: var(--teal-light);   color: var(--teal); }
+    .b-fixed  { background: var(--gold-light);   color: var(--gold); }
 
-    /* ── Shopping checklist ── */
+    /* Checklist */
     .check-group { margin-bottom: 24px; }
-    .check-group-title {
-      font-size: 12px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .6px;
-      color: var(--muted); margin-bottom: 10px; padding-left: 2px;
-    }
-    .check-item {
-      display: flex; align-items: center; gap: 12px;
-      background: var(--white); border-radius: 14px;
-      padding: 14px 16px; margin-bottom: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
-      cursor: pointer; transition: opacity .2s;
-      -webkit-tap-highlight-color: transparent; user-select: none;
-    }
+    .check-group-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 10px; padding-left: 2px; }
+    .check-item { display: flex; align-items: center; gap: 12px; background: var(--white); border-radius: 14px; padding: 13px 16px; margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.06); cursor: pointer; transition: opacity .2s; -webkit-tap-highlight-color: transparent; user-select: none; }
     .check-item.done { opacity: .4; }
     .check-item.done .check-label { text-decoration: line-through; }
-    .check-box {
-      width: 24px; height: 24px; border-radius: 50%;
-      border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 12px; color: white;
-      transition: all .2s;
-    }
+    .check-box { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; color: white; transition: all .2s; }
     .check-item.done .check-box { background: var(--green); border-color: var(--green); }
     .check-label { font-size: 15px; flex: 1; font-weight: 500; }
     .check-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
-    .check-icon { font-size: 22px; flex-shrink: 0; }
+    .check-icon { font-size: 20px; flex-shrink: 0; }
 
-    /* ── Map bottom sheet ── */
-    .map-overlay {
-      display: none;
-      position: fixed; inset: 0; z-index: 500;
-      background: rgba(0,0,0,.5);
-      align-items: flex-end;
-      animation: fadeIn .2s ease;
-    }
-    .map-overlay.open { display: flex; }
+    /* Map overlay */
+    .map-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,.5); align-items: flex-end; }
+    .map-overlay.open { display: flex; animation: fadeIn .2s ease; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .map-sheet { width: 100%; background: var(--white); border-radius: 20px 20px 0 0; overflow: hidden; animation: slideUp .25s ease; max-height: 88vh; display: flex; flex-direction: column; }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .map-sheet-handle { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+    .map-sheet-title { font-size: 15px; font-weight: 700; flex: 1; margin-right: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .map-sheet-close { width: 30px; height: 30px; border-radius: 50%; background: #f0f2f5; border: none; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
+    .map-sheet-actions { display: flex; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--border); }
+    .map-open-link { flex: 1; padding: 9px; background: var(--navy); color: white; border-radius: 10px; text-align: center; font-size: 13px; font-weight: 700; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+    .map-frame-wrap { flex: 1; min-height: 320px; overflow: hidden; }
+    .map-frame-wrap iframe { width: 100%; height: 100%; min-height: 320px; border: none; display: block; }
 
-    .map-sheet {
-      width: 100%;
-      background: var(--white);
-      border-radius: 20px 20px 0 0;
-      overflow: hidden;
-      animation: slideUp .25s ease;
-      max-height: 88vh;
-      display: flex; flex-direction: column;
-    }
-    @keyframes slideUp {
-      from { transform: translateY(100%); }
-      to   { transform: translateY(0); }
-    }
-
-    .map-sheet-handle {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 16px 10px;
-      border-bottom: 1px solid var(--border);
-    }
-    .map-sheet-title {
-      font-size: 15px; font-weight: 700;
-      flex: 1; margin-right: 8px;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .map-sheet-close {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: #f0f2f5; border: none;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; cursor: pointer; flex-shrink: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .map-sheet-actions {
-      display: flex; gap: 8px;
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    .map-open-link {
-      flex: 1; padding: 9px;
-      background: var(--navy); color: white;
-      border-radius: 10px; text-align: center;
-      font-size: 13px; font-weight: 700;
-      text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .map-frame-wrap {
-      flex: 1; min-height: 320px;
-      overflow: hidden;
-    }
-    .map-frame-wrap iframe {
-      width: 100%; height: 100%; min-height: 320px;
-      border: none; display: block;
-    }
-
-    footer {
-      text-align: center;
-      padding: 32px 16px 48px;
-      background: var(--navy);
-      color: rgba(255,255,255,.4);
-      font-size: 12px;
-    }
+    footer { text-align: center; padding: 32px 16px 48px; background: var(--navy); color: rgba(255,255,255,.4); font-size: 12px; }
   </style>
 </head>
 <body>
 
-<!-- ── Hero ── -->
 <div class="hero">
   <div class="hero-icon">🗼</div>
   <h1>도쿄 여행 2026</h1>
-  <div class="hero-period">
-    <span>2026</span>
-    6월 3일 (수) → 6월 8일 (월)
-  </div>
+  <div class="hero-period"><span>2026</span> 6월 3일 (수) → 6월 8일 (월)</div>
 </div>
 
-<!-- ── Sticky Nav ── -->
 <nav class="sticky-nav" id="nav">
   <div class="nav-inner">
     <a class="nav-btn" href="#overview">개요</a>
@@ -336,583 +145,686 @@
     <a class="nav-btn" href="#day4">4일차</a>
     <a class="nav-btn" href="#day5">5일차</a>
     <a class="nav-btn" href="#day6">6일차</a>
-    <a class="nav-btn" href="#checklist">쇼핑</a>
+    <a class="nav-btn" href="#checklist">체크리스트</a>
   </div>
 </nav>
 
-<!-- ════════════════ 개요 ════════════════ -->
+<!-- ═══ 개요 ═══ -->
 <section class="page-section" id="overview">
   <div class="section-header">
     <div class="section-day-badge">OVERVIEW</div>
     <div class="section-date">항공 &amp; 숙소</div>
     <div class="section-theme">예약 정보 한눈에 보기</div>
   </div>
-
   <div class="card">
     <div class="card-label">✈️ 출발편</div>
     <div class="flight-row">
-      <div class="f-city">
-        <div class="f-time">08:00</div>
-        <div class="f-port">GMP · 김포국제공항</div>
-      </div>
-      <div class="f-mid">
-        <div class="f-dur">2시간 15분</div>
-        <div class="f-line">
-          <div class="f-line-dot"></div>
-          <div class="f-line-bar"></div>
-          <span style="font-size:14px">✈</span>
-          <div class="f-line-bar"></div>
-          <div class="f-line-dot"></div>
-        </div>
-        <div class="f-dur">직항</div>
-      </div>
-      <div class="f-city r">
-        <div class="f-time">10:15</div>
-        <div class="f-port">HND T3 · 하네다</div>
-      </div>
+      <div class="f-city"><div class="f-time">08:00</div><div class="f-port">GMP · 김포국제공항</div></div>
+      <div class="f-mid"><div class="f-dur">2시간 15분</div><div class="f-line"><div class="f-line-dot"></div><div class="f-line-bar"></div><span style="font-size:14px">✈</span><div class="f-line-bar"></div><div class="f-line-dot"></div></div><div class="f-dur">직항</div></div>
+      <div class="f-city r"><div class="f-time">10:15</div><div class="f-port">HND T3 · 하네다</div></div>
     </div>
-    <div class="info-row">
-      <span class="info-key">항공편</span>
-      <span class="info-val">Japan Airlines JL090</span>
-    </div>
-    <div class="info-row">
-      <span class="info-key">날짜</span>
-      <span class="info-val">2026년 6월 3일 (수)</span>
-    </div>
+    <div class="info-row"><span class="info-key">항공편</span><span class="info-val">Japan Airlines JL090</span></div>
+    <div class="info-row"><span class="info-key">날짜</span><span class="info-val">2026년 6월 3일 (수)</span></div>
   </div>
-
   <div class="card">
     <div class="card-label">✈️ 귀국편</div>
     <div class="flight-row">
-      <div class="f-city">
-        <div class="f-time">19:55</div>
-        <div class="f-port">HND · 하네다</div>
-      </div>
-      <div class="f-mid">
-        <div class="f-dur">약 2시간 20분</div>
-        <div class="f-line">
-          <div class="f-line-dot"></div>
-          <div class="f-line-bar"></div>
-          <span style="font-size:14px">✈</span>
-          <div class="f-line-bar"></div>
-          <div class="f-line-dot"></div>
-        </div>
-        <div class="f-dur">직항</div>
-      </div>
-      <div class="f-city r">
-        <div class="f-time">22:15</div>
-        <div class="f-port">GMP · 김포</div>
-      </div>
+      <div class="f-city"><div class="f-time">19:55</div><div class="f-port">HND · 하네다</div></div>
+      <div class="f-mid"><div class="f-dur">약 2시간 20분</div><div class="f-line"><div class="f-line-dot"></div><div class="f-line-bar"></div><span style="font-size:14px">✈</span><div class="f-line-bar"></div><div class="f-line-dot"></div></div><div class="f-dur">직항</div></div>
+      <div class="f-city r"><div class="f-time">22:15</div><div class="f-port">GMP · 김포</div></div>
     </div>
-    <div class="info-row">
-      <span class="info-key">항공편</span>
-      <span class="info-val">Korean Air</span>
-    </div>
-    <div class="info-row">
-      <span class="info-key">날짜</span>
-      <span class="info-val">2026년 6월 8일 (월)</span>
-    </div>
+    <div class="info-row"><span class="info-key">항공편</span><span class="info-val">Korean Air</span></div>
+    <div class="info-row"><span class="info-key">날짜</span><span class="info-val">2026년 6월 8일 (월)</span></div>
   </div>
-
   <div class="card">
     <div class="card-label">🏨 숙소</div>
     <div style="font-size:19px;font-weight:800;margin-bottom:4px">the square hotel GINZA</div>
     <div style="font-size:13px;color:var(--muted);margin-bottom:14px">도쿄 · 긴자</div>
-    <div class="info-row">
-      <span class="info-key">체크인</span>
-      <span class="info-val">6월 3일 (수) 15:00~</span>
-    </div>
-    <div class="info-row">
-      <span class="info-key">체크아웃</span>
-      <span class="info-val">6월 8일 (월) ~11:00</span>
-    </div>
-    <div class="info-row">
-      <span class="info-key">상태</span>
-      <span class="info-val" style="color:var(--green)">✅ 예약 확정</span>
-    </div>
+    <div class="info-row"><span class="info-key">체크인</span><span class="info-val">6월 3일 (수) 15:00~</span></div>
+    <div class="info-row"><span class="info-key">체크아웃</span><span class="info-val">6월 8일 (월) ~11:00</span></div>
+    <div class="info-row"><span class="info-key">상태</span><span class="info-val" style="color:var(--green)">✅ 예약 확정</span></div>
   </div>
 </section>
 
-<!-- ════════════════ 1일차 ════════════════ -->
+<!-- ═══ DAY 1 ═══ -->
 <section class="page-section" id="day1">
   <div class="section-header">
     <div class="section-day-badge">DAY 1</div>
     <div class="section-date">6월 3일 (수)</div>
-    <div class="section-theme">서울 출발 → 도쿄 도착 · 긴자</div>
+    <div class="section-theme">하네다 도착 · 긴자 탐방</div>
   </div>
-  <div class="card">
-    <div class="timeline">
-      <div class="tl-item" data-map="김포국제공항" data-map-q="김포국제공항">
-        <div class="tl-dot flight"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">07:00</div>
-        <div class="tl-label">김포공항 도착 <span class="badge b-flight">✈ 항공</span></div>
-        <div class="tl-sub">국제선 터미널 · 출발 1시간 전 도착 권장</div>
-      </div>
-      <div class="tl-item" data-map="도쿄 하네다 공항" data-map-q="Tokyo Haneda Airport HND">
-        <div class="tl-dot flight"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">08:00 – 10:15</div>
-        <div class="tl-label">JL090 · GMP → HND T3 <span class="badge b-flight">✈ 항공</span></div>
-        <div class="tl-sub">비행 2시간 15분 · 직항</div>
-      </div>
-      <div class="tl-item" data-map="긴자" data-map-q="Ginza Tokyo">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">11:30</div>
-        <div class="tl-label">도쿄 지하철 패스 구입 <span class="badge b-spot">🚇 교통</span></div>
-        <div class="tl-sub">하네다 공항 B1 · 긴자까지 약 40분</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">12:30</div>
-        <div class="tl-label">점심 <span class="badge b-food">🍜 식사</span></div>
-        <div class="tl-sub">긴자 주변 첫 도쿄 식사</div>
-      </div>
-      <div class="tl-item" data-map="긴자식스" data-map-q="GINZA SIX">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">14:00</div>
-        <div class="tl-label">긴자 거리 산책 <span class="badge b-spot">🏙 관광</span></div>
-        <div class="tl-sub">긴자식스 · 마로니에게이트</div>
-      </div>
-      <div class="tl-item" data-map="the square hotel GINZA" data-map-q="the square hotel GINZA Tokyo">
-        <div class="tl-dot hotel"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">15:00</div>
-        <div class="tl-label">호텔 체크인 <span class="badge b-hotel">🏨 숙소</span></div>
-        <div class="tl-sub">the square hotel GINZA</div>
-      </div>
-      <div class="tl-item" data-map="무인양품 긴자" data-map-q="MUJI 無印良品 銀座">
-        <div class="tl-dot shop"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">16:30</div>
-        <div class="tl-label">무인양품 긴자 본점 <span class="badge b-shop">🛍 쇼핑</span></div>
-        <div class="tl-sub">MUJI Ginza · 지상 6층</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">19:00</div>
-        <div class="tl-label">저녁 <span class="badge b-food">🍣 식사</span></div>
-        <div class="tl-sub">긴자 스시 or 이자카야</div>
-      </div>
+  <div class="card"><div class="timeline">
+
+    <div class="tl-item" data-map="김포국제공항" data-map-q="김포국제공항 Gimpo Airport">
+      <div class="tl-dot flight"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">07:00</div>
+      <div class="tl-label">김포공항 도착 <span class="badge b-flight">✈ 항공</span></div>
+      <div class="tl-sub">국제선 터미널 · 출발 1시간 전</div>
     </div>
-  </div>
+
+    <div class="tl-item" data-map="도쿄 하네다 공항" data-map-q="Tokyo Haneda Airport HND Terminal 3">
+      <div class="tl-dot flight"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">08:00 – 10:15</div>
+      <div class="tl-label">JL090 · GMP → HND T3 <span class="badge b-flight">✈ 항공</span></div>
+      <div class="tl-sub">비행 2시간 15분 · 입국심사 · 교통패스 구입</div>
+    </div>
+
+    <div class="tl-item" data-map="긴자 아부라소바" data-map-q="油そば 銀座 abura soba Tokyo">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">12:00</div>
+      <div class="tl-label">점심 · 긴자 아부라소바 🎯 <span class="badge b-food">🍜 식사</span></div>
+      <div class="tl-sub">긴자 도착 후 첫 도쿄 식사</div>
+    </div>
+
+    <div class="tl-item" data-map="긴자웨스트아오야마가든" data-map-q="銀座ウエスト 青山ガーデン Ginza West Aoyama Garden">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">13:30</div>
+      <div class="tl-label">긴자웨스트아오야마가든 🎯 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">⭐ 4.2 · 긴자 명물 카페 · 엘리제 쿠키</div>
+    </div>
+
+    <div class="tl-item" data-map="긴자식스" data-map-q="GINZA SIX 銀座シックス">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">14:30</div>
+      <div class="tl-label">긴자 쇼핑 산책 <span class="badge b-spot">🏙 관광</span></div>
+      <div class="tl-sub">긴자식스 · 도버스트리트마켓 · 긴자 로프트</div>
+    </div>
+
+    <div class="tl-item" data-map="the square hotel GINZA" data-map-q="the square hotel GINZA Tokyo">
+      <div class="tl-dot hotel"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">15:00</div>
+      <div class="tl-label">호텔 체크인 <span class="badge b-hotel">🏨 숙소</span></div>
+      <div class="tl-sub">the square hotel GINZA · 짐 정리</div>
+    </div>
+
+    <div class="tl-item" data-map="무인양품 긴자" data-map-q="無印良品 銀座 MUJI Ginza">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">16:00</div>
+      <div class="tl-label">무인양품 긴자 본점 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">향초 · 잠옷 · 고체향수 · 치간칫솔</div>
+    </div>
+
+    <div class="tl-item" data-map="GU 긴자" data-map-q="GU ジーユー 銀座 Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">17:00</div>
+      <div class="tl-label">GU 긴자 · 스탠다드 프로덕트 긴자 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">두 매장 도보 이동 가능</div>
+    </div>
+
+    <div class="tl-item" data-map="긴자 롯데면세점" data-map-q="ロッテ免税店 銀座 Lotte Duty Free Ginza">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">18:00</div>
+      <div class="tl-label">긴자 롯데면세점 🎯 <span class="badge b-shop">🛍 면세</span></div>
+      <div class="tl-sub">위스키 · 화장품 · 기타 쇼핑</div>
+    </div>
+
+    <div class="tl-item" data-map="긴자 이마카츠" data-map-q="今半 or いまかつ 銀座 tonkatsu">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">19:30</div>
+      <div class="tl-label">저녁 · 긴자 이마카츠 or 와코돈카츠 🎯 <span class="badge b-food">🍖 식사</span></div>
+      <div class="tl-sub">긴자 돈카츠 맛집</div>
+    </div>
+
+  </div></div>
 </section>
 
-<!-- ════════════════ 2일차 ════════════════ -->
+<!-- ═══ DAY 2 ═══ -->
 <section class="page-section" id="day2">
   <div class="section-header">
     <div class="section-day-badge">DAY 2</div>
     <div class="section-date">6월 4일 (목)</div>
-    <div class="section-theme">아사쿠사 · 스카이트리 · 우에노</div>
+    <div class="section-theme">아사쿠사 · 나카메구로 · 에비스</div>
   </div>
-  <div class="card">
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">08:00</div>
-        <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
-        <div class="tl-sub">호텔 조식 or 긴자 베이커리</div>
-      </div>
-      <div class="tl-item" data-map="아사쿠사 센소지" data-map-q="浅草寺 Senso-ji Temple Asakusa">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">09:30</div>
-        <div class="tl-label">아사쿠사 센소지 <span class="badge b-spot">⛩ 관광</span></div>
-        <div class="tl-sub">도쿄 최고(最古) 사원 · 나카미세도리</div>
-      </div>
-      <div class="tl-item" data-map="도쿄 스카이트리" data-map-q="Tokyo Skytree 東京スカイツリー">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">11:00</div>
-        <div class="tl-label">도쿄 스카이트리 <span class="badge b-spot">🗼 관광</span></div>
-        <div class="tl-sub">전망대 입장 · 사전 예약 권장</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">13:00</div>
-        <div class="tl-label">점심 <span class="badge b-food">🍱 식사</span></div>
-        <div class="tl-sub">아사쿠사 멘치카츠 or 소바</div>
-      </div>
-      <div class="tl-item" data-map="우에노 공원" data-map-q="上野公園 Ueno Park Tokyo">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">14:30</div>
-        <div class="tl-label">우에노 공원 <span class="badge b-spot">🌳 관광</span></div>
-        <div class="tl-sub">도쿄 국립박물관 (선택)</div>
-      </div>
-      <div class="tl-item" data-map="아키하바라" data-map-q="秋葉原 Akihabara Electric Town Tokyo">
-        <div class="tl-dot shop"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">16:30</div>
-        <div class="tl-label">아키하바라 <span class="badge b-shop">🛍 쇼핑</span></div>
-        <div class="tl-sub">전자상가 · 서브컬처 거리</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">19:00</div>
-        <div class="tl-label">저녁 <span class="badge b-food">🍜 식사</span></div>
-        <div class="tl-sub">아키하바라 라멘</div>
-      </div>
+  <div class="card"><div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">09:00</div>
+      <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
+      <div class="tl-sub">호텔 조식 or 긴자 베이커리</div>
     </div>
-  </div>
+
+    <div class="tl-item" data-map="아사쿠사 센소지" data-map-q="浅草寺 Senso-ji Temple Asakusa Tokyo">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">09:30</div>
+      <div class="tl-label">아사쿠사 센소지 <span class="badge b-spot">⛩ 관광</span></div>
+      <div class="tl-sub">도쿄 최고(最古) 사원 · 나카미세도리</div>
+    </div>
+
+    <div class="tl-item" data-map="도쿄 스카이트리" data-map-q="東京スカイツリー Tokyo Skytree">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">11:00</div>
+      <div class="tl-label">도쿄 스카이트리 <span class="badge b-spot">🗼 관광</span></div>
+      <div class="tl-sub">전망대 입장 · 사전 예약 권장</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">12:30</div>
+      <div class="tl-label">점심 <span class="badge b-food">🍱 식사</span></div>
+      <div class="tl-sub">아사쿠사 멘치카츠 or 소바</div>
+    </div>
+
+    <div class="tl-item" data-map="나카메구로" data-map-q="中目黒 Nakameguro Tokyo canal">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">13:30</div>
+      <div class="tl-label">나카메구로 이동 · 카페 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">⭐ 4.1+ · 오메가카나루 수변 카페 거리</div>
+    </div>
+
+    <div class="tl-item" data-map="나카메구로" data-map-q="中目黒 Nakameguro Tokyo">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">14:30</div>
+      <div class="tl-label">나카메구로 산책 🎯 <span class="badge b-spot">🌊 관광</span></div>
+      <div class="tl-sub">메구로강 수변 · 감성 카페 거리</div>
+    </div>
+
+    <div class="tl-item" data-map="푸에브코 다이칸야마" data-map-q="Puebco 代官山 Daikanyama Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">15:30</div>
+      <div class="tl-label">다이칸야마 · 푸에브코 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">나카메구로 → 다이칸야마 도보 10분</div>
+    </div>
+
+    <div class="tl-item" data-map="에비스" data-map-q="恵比寿 Ebisu Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">16:30</div>
+      <div class="tl-label">에비스 쇼핑 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">sisiri · harvest · 르메르 에비스</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">19:00</div>
+      <div class="tl-label">저녁 <span class="badge b-food">🍣 식사</span></div>
+      <div class="tl-sub">나카메구로 or 에비스 레스토랑</div>
+    </div>
+
+  </div></div>
 </section>
 
-<!-- ════════════════ 3일차 ════════════════ -->
+<!-- ═══ DAY 3 ═══ -->
 <section class="page-section" id="day3">
   <div class="section-header">
     <div class="section-day-badge">DAY 3</div>
     <div class="section-date">6월 5일 (금)</div>
-    <div class="section-theme">하라주쿠 · 시부야 · 오모테산도</div>
+    <div class="section-theme">하라주쿠 · 임페리얼호텔 ⭐ · 시부야</div>
   </div>
-  <div class="card">
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">09:00</div>
-        <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
-        <div class="tl-sub">카페 or 편의점 모닝</div>
-      </div>
-      <div class="tl-item" data-map="메이지 신궁" data-map-q="明治神宮 Meiji Shrine Tokyo">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">10:00</div>
-        <div class="tl-label">메이지 신궁 <span class="badge b-spot">⛩ 관광</span></div>
-        <div class="tl-sub">하라주쿠역 인근 · 도쿄 최대 신사</div>
-      </div>
-      <div class="tl-item" data-map="다케시타도리" data-map-q="竹下通り Takeshita Street Harajuku Tokyo">
-        <div class="tl-dot shop"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">11:30</div>
-        <div class="tl-label">다케시타도리 · 오모테산도 <span class="badge b-shop">🛍 쇼핑</span></div>
-        <div class="tl-sub">GU 플래그십 · 하라주쿠 패션</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">13:00</div>
-        <div class="tl-label">점심 <span class="badge b-food">🥗 식사</span></div>
-        <div class="tl-sub">오모테산도 카페 or 하라주쿠 크레페</div>
-      </div>
-      <div class="tl-item" data-map="시부야 스크램블 교차로" data-map-q="渋谷スクランブル交差点 Shibuya Scramble Crossing">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">14:30</div>
-        <div class="tl-label">시부야 스크램블 교차로 <span class="badge b-spot">🏙 관광</span></div>
-        <div class="tl-sub">시부야 스카이 전망대 (사전 예약)</div>
-      </div>
-      <div class="tl-item" data-map="시부야 히카리에" data-map-q="渋谷ヒカリエ Shibuya Hikarie">
-        <div class="tl-dot shop"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">16:00</div>
-        <div class="tl-label">시부야 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
-        <div class="tl-sub">시부야 히카리에 · GU · UNIQLO</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">19:00</div>
-        <div class="tl-label">저녁 <span class="badge b-food">🍖 식사</span></div>
-        <div class="tl-sub">시부야 야키니쿠 or 이자카야</div>
-      </div>
+  <div class="card"><div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">09:00</div>
+      <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
+      <div class="tl-sub">카페 or 편의점 모닝</div>
     </div>
-  </div>
+
+    <div class="tl-item" data-map="메이지 신궁" data-map-q="明治神宮 Meiji Shrine Harajuku Tokyo">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">10:00</div>
+      <div class="tl-label">메이지 신궁 <span class="badge b-spot">⛩ 관광</span></div>
+      <div class="tl-sub">하라주쿠역 인근 · 도쿄 최대 신사</div>
+    </div>
+
+    <div class="tl-item" data-map="다케시타도리" data-map-q="竹下通り Takeshita Street Harajuku Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">11:00</div>
+      <div class="tl-label">다케시타도리 · 오모테산도 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">하라주쿠 패션 · GU 플래그십</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">12:00</div>
+      <div class="tl-label">점심 <span class="badge b-food">🥗 식사</span></div>
+      <div class="tl-sub">오모테산도 or 하라주쿠 주변</div>
+    </div>
+
+    <div class="tl-item" data-map="리틀냅커피로스터스" data-map-q="Little Nap Coffee Roasters 代々木 Yoyogi Tokyo">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">13:00</div>
+      <div class="tl-label">리틀냅 커피로스터스 🎯 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">⭐ 4.4 · 요요기 · 하라주쿠에서 도보 10분</div>
+    </div>
+
+    <div class="tl-item fixed-event" data-map="임페리얼호텔 도쿄" data-map-q="帝国ホテル東京 Imperial Hotel Tokyo Hibiya">
+      <div class="tl-dot hotel"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">14:00 – 16:00</div>
+      <div class="tl-label">🌟 임페리얼호텔 아쿠아 애프터눈티 <span class="badge b-fixed">⭐ 필수</span></div>
+      <div class="tl-sub">Imperial Hotel Tokyo · Hibiya · 예약 확정</div>
+    </div>
+
+    <div class="tl-item" data-map="시부야 파르코" data-map-q="渋谷PARCO Shibuya Parco Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">16:30</div>
+      <div class="tl-label">시부야 파르코 · 몽벨 시부야 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">히비야 → 시부야 지하철 15분 · 시부야 로프트도 근처</div>
+    </div>
+
+    <div class="tl-item" data-map="시부야 스크램블 교차로" data-map-q="渋谷スクランブル交差点 Shibuya Scramble Crossing">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">17:30</div>
+      <div class="tl-label">시부야 스크램블 · 스트리머커피 🎯 <span class="badge b-spot">🏙 관광</span></div>
+      <div class="tl-sub">시부야 스카이 전망대(선택) · 스트리머커피 ⭐4.1</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">19:00</div>
+      <div class="tl-label">저녁 <span class="badge b-food">🍖 식사</span></div>
+      <div class="tl-sub">시부야 야키니쿠 or 이자카야</div>
+    </div>
+
+  </div></div>
 </section>
 
-<!-- ════════════════ 4일차 ════════════════ -->
+<!-- ═══ DAY 4 ═══ -->
 <section class="page-section" id="day4">
   <div class="section-header">
     <div class="section-day-badge">DAY 4</div>
     <div class="section-date">6월 6일 (토)</div>
-    <div class="section-theme">신주쿠 · 알펜도쿄</div>
+    <div class="section-theme">롯폰기 · 아자부다이 · 신주쿠</div>
   </div>
-  <div class="card">
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">09:00</div>
-        <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
-      </div>
-      <div class="tl-item" data-map="도쿄도청 전망대" data-map-q="東京都庁 Tokyo Metropolitan Government Building Shinjuku">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">10:00</div>
-        <div class="tl-label">도쿄도청 무료 전망대 <span class="badge b-spot">🏙 관광</span></div>
-        <div class="tl-sub">신주쿠 · 날씨 좋으면 후지산 조망 가능</div>
-      </div>
-      <div class="tl-item" data-map="신주쿠 알펜도쿄" data-map-q="Alpen Tokyo アルペン 新宿">
-        <div class="tl-dot shop"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">11:30</div>
-        <div class="tl-label">신주쿠 알펜도쿄 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
-        <div class="tl-sub">아웃도어 전문점 · 몽벨 코너 필수 확인</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">13:30</div>
-        <div class="tl-label">점심 <span class="badge b-food">🍜 식사</span></div>
-        <div class="tl-sub">신주쿠 라멘 · 이치란 or 후우린</div>
-      </div>
-      <div class="tl-item" data-map="신주쿠 교엔" data-map-q="新宿御苑 Shinjuku Gyoen National Garden">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">15:00</div>
-        <div class="tl-label">신주쿠 교엔 <span class="badge b-spot">🌳 관광</span></div>
-        <div class="tl-sub">도쿄 최대 정원 · 산책 추천</div>
-      </div>
-      <div class="tl-item" data-map="신주쿠 이세탄" data-map-q="伊勢丹新宿店 Isetan Shinjuku">
-        <div class="tl-dot shop"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">16:30</div>
-        <div class="tl-label">신주쿠 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
-        <div class="tl-sub">이세탄 · 타카시마야 · 루미네</div>
-      </div>
-      <div class="tl-item" data-map="오모이데요코초" data-map-q="思い出横丁 Omoide Yokocho Shinjuku">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">18:30</div>
-        <div class="tl-label">오모이데요코초 야경 <span class="badge b-spot">🌃 야경</span></div>
-        <div class="tl-sub">신주쿠 골든가이 · 야간 산책</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">19:30</div>
-        <div class="tl-label">저녁 <span class="badge b-food">🍢 식사</span></div>
-        <div class="tl-sub">오모이데요코초 꼬치구이</div>
-      </div>
+  <div class="card"><div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">09:00</div>
+      <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
     </div>
-  </div>
+
+    <div class="tl-item" data-map="롯폰기힐즈" data-map-q="六本木ヒルズ Roppongi Hills Tokyo">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">10:00</div>
+      <div class="tl-label">롯폰기힐즈 🎯 <span class="badge b-spot">🏙 관광</span></div>
+      <div class="tl-sub">모리 미술관 · 전망대 · 쇼핑</div>
+    </div>
+
+    <div class="tl-item" data-map="아자부다이힐즈" data-map-q="麻布台ヒルズ Azabudai Hills Tokyo">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">11:00</div>
+      <div class="tl-label">아자부다이힐즈 🎯 <span class="badge b-spot">🏙 관광</span></div>
+      <div class="tl-sub">2023년 신개발 · 롯폰기에서 도보 10분</div>
+    </div>
+
+    <div class="tl-item" data-map="롯폰기 4ro 몬자야키" data-map-q="4ro もんじゃ 六本木 monjayaki Roppongi Tokyo">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">12:30</div>
+      <div class="tl-label">점심 · 롯폰기 4ro 몬자야키 🎯 <span class="badge b-food">🍳 식사</span></div>
+      <div class="tl-sub">롯폰기 몬자야키 맛집</div>
+    </div>
+
+    <div class="tl-item" data-map="아자부다이힐즈 카페" data-map-q="麻布台ヒルズ cafe Azabudai Hills Tokyo">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">13:30</div>
+      <div class="tl-label">아자부다이힐즈 카페 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">⭐ 4.2+ · 힐즈 내 루프탑 카페</div>
+    </div>
+
+    <div class="tl-item" data-map="도쿄도청 전망대" data-map-q="東京都庁 Tokyo Metropolitan Government Building Shinjuku">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">15:00</div>
+      <div class="tl-label">신주쿠 도쿄도청 무료 전망대 <span class="badge b-spot">🏙 관광</span></div>
+      <div class="tl-sub">롯폰기 → 신주쿠 지하철 15분 · 맑으면 후지산 조망</div>
+    </div>
+
+    <div class="tl-item" data-map="신주쿠 알펜도쿄" data-map-q="Alpen Tokyo アルペン 新宿">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">16:00</div>
+      <div class="tl-label">신주쿠 알펜도쿄 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">아웃도어 전문점 · 몽벨 전 코너 확인</div>
+    </div>
+
+    <div class="tl-item" data-map="신주쿠 이세탄" data-map-q="伊勢丹新宿店 Isetan Shinjuku">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">17:00</div>
+      <div class="tl-label">신주쿠 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">이세탄 · 타카시마야 · 루미네</div>
+    </div>
+
+    <div class="tl-item" data-map="오모이데요코초" data-map-q="思い出横丁 Omoide Yokocho Shinjuku Tokyo">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">18:30</div>
+      <div class="tl-label">오모이데요코초 야경 <span class="badge b-spot">🌃 야경</span></div>
+      <div class="tl-sub">신주쿠 골든가이 · 야간 꼬치구이</div>
+    </div>
+
+  </div></div>
 </section>
 
-<!-- ════════════════ 5일차 ════════════════ -->
+<!-- ═══ DAY 5 ═══ -->
 <section class="page-section" id="day5">
   <div class="section-header">
     <div class="section-day-badge">DAY 5</div>
     <div class="section-date">6월 7일 (일)</div>
-    <div class="section-theme">교바시 · 몽벨 · 오다이바</div>
+    <div class="section-theme">교바시 · 유락초 · 오다이바</div>
   </div>
-  <div class="card">
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">09:00</div>
-        <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
-        <div class="tl-sub">긴자 베이커리 카페</div>
-      </div>
-      <div class="tl-item" data-map="몽벨 교바시" data-map-q="mont-bell モンベル 京橋 Tokyo">
-        <div class="tl-dot shop"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">10:30</div>
-        <div class="tl-label">몽벨 교바시 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
-        <div class="tl-sub">캠핑체어 · 보냉백 · 선글라스 구입</div>
-      </div>
-      <div class="tl-item" data-map="교바시 이세히로" data-map-q="伊勢廣 京橋本店 Isehiro Kyobashi Tokyo">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">12:00</div>
-        <div class="tl-label">교바시 이세히로 야키토리동 🎯 <span class="badge b-food">🍱 식사</span></div>
-        <div class="tl-sub">교바시 명물 야키토리덮밥 · 줄서기 각오</div>
-      </div>
-      <div class="tl-item" data-map="치쿠요테이" data-map-q="竹葉亭 Chikuyotei Tokyo">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">14:00</div>
-        <div class="tl-label">치쿠요테이 🎯 <span class="badge b-food">🍡 카페</span></div>
-        <div class="tl-sub">화과자 디저트</div>
-      </div>
-      <div class="tl-item" data-map="도쿄역" data-map-q="東京駅 Tokyo Station">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">15:00</div>
-        <div class="tl-label">도쿄역 · 마루노우치 <span class="badge b-spot">🏛 관광</span></div>
-        <div class="tl-sub">도쿄역 붉은 벽돌 건물 · 마루빌딩</div>
-      </div>
-      <div class="tl-item" data-map="무인양품 유락초" data-map-q="無印良品 有楽町 MUJI Yurakucho Tokyo">
-        <div class="tl-dot shop"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">16:30</div>
-        <div class="tl-label">무인양품 유락초 <span class="badge b-shop">🛍 쇼핑</span></div>
-        <div class="tl-sub">향초 · 잠옷 마지막 MUJI 쇼핑</div>
-      </div>
-      <div class="tl-item" data-map="신바시역" data-map-q="新橋駅 Shimbashi Station Tokyo">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">17:30</div>
-        <div class="tl-label">신바시 → 유리카모메 → 오다이바 <span class="badge b-spot">🚝 교통</span></div>
-        <div class="tl-sub">유락초에서 신바시역 도보 5분 · 유리카모메 약 15분</div>
-      </div>
-      <div class="tl-item" data-map="오다이바" data-map-q="お台場 Odaiba Tokyo">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">18:00</div>
-        <div class="tl-label">오다이바 산책 <span class="badge b-spot">🌅 관광</span></div>
-        <div class="tl-sub">레인보우브리지 야경 · 다이바시티 · 덱스 도쿄 비치</div>
-      </div>
-      <div class="tl-item" data-map="다이바시티 도쿄 플라자" data-map-q="ダイバーシティ東京 DiverCity Tokyo Plaza Odaiba">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">19:30</div>
-        <div class="tl-label">오다이바 저녁 <span class="badge b-food">🍣 식사</span></div>
-        <div class="tl-sub">다이바시티 레스토랑 or 덱스 도쿄 비치</div>
-      </div>
+  <div class="card"><div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">09:00</div>
+      <div class="tl-label">아침 <span class="badge b-food">☕ 아침</span></div>
+      <div class="tl-sub">긴자 베이커리 카페</div>
     </div>
-  </div>
+
+    <div class="tl-item" data-map="kitte 마루노우치" data-map-q="KITTE 丸の内 Marunouchi Tokyo Station">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">09:30</div>
+      <div class="tl-label">KITTE 🎯 <span class="badge b-spot">🏛 관광</span></div>
+      <div class="tl-sub">도쿄역 앞 · 옥상정원 · 쇼핑</div>
+    </div>
+
+    <div class="tl-item" data-map="몽벨 교바시" data-map-q="mont-bell モンベル 京橋 Kyobashi Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">10:30</div>
+      <div class="tl-label">몽벨 교바시 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">캠핑체어 · 보냉백 · 선글라스 · 양우산 60</div>
+    </div>
+
+    <div class="tl-item" data-map="교바시 이세히로" data-map-q="伊勢廣 京橋本店 Isehiro Kyobashi Tokyo">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">12:00</div>
+      <div class="tl-label">점심 · 교바시 이세히로 야키토리동 🎯 <span class="badge b-food">🍱 식사</span></div>
+      <div class="tl-sub">교바시 명물 야키토리덮밥 · 줄서기 각오</div>
+    </div>
+
+    <div class="tl-item" data-map="치쿠요테이 긴자" data-map-q="竹葉亭 銀座 Chikuyotei Ginza Tokyo">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">13:30</div>
+      <div class="tl-label">치쿠요테이 긴자 🎯 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">⭐ 4.1 · 화과자 디저트</div>
+    </div>
+
+    <div class="tl-item" data-map="스시로 유락초" data-map-q="スシロー 有楽町 Sushiro Yurakucho Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">14:30</div>
+      <div class="tl-label">칼디 · 약국 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">칼디(새싹보리·위스키) · 드럭스토어(비오레·클렌징폼·고바야시)</div>
+    </div>
+
+    <div class="tl-item" data-map="무인양품 유락초" data-map-q="無印良品 有楽町 MUJI Yurakucho Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">16:00</div>
+      <div class="tl-label">무인양품 유락초 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">놓친 MUJI 아이템 최종 확인</div>
+    </div>
+
+    <div class="tl-item" data-map="신바시역" data-map-q="新橋駅 Shimbashi Station Tokyo Yurikamome">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">17:30</div>
+      <div class="tl-label">신바시 → 유리카모메 → 오다이바 <span class="badge b-spot">🚝 교통</span></div>
+      <div class="tl-sub">유락초에서 도보 5분 · 유리카모메 약 15분</div>
+    </div>
+
+    <div class="tl-item" data-map="오다이바" data-map-q="お台場 Odaiba Tokyo Rainbow Bridge">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">18:00</div>
+      <div class="tl-label">오다이바 산책 🎯 <span class="badge b-spot">🌅 관광</span></div>
+      <div class="tl-sub">레인보우브리지 야경 · 다이바시티 · 덱스 도쿄 비치</div>
+    </div>
+
+    <div class="tl-item" data-map="다이바시티 도쿄 플라자" data-map-q="ダイバーシティ東京 DiverCity Tokyo Plaza Odaiba">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">19:30</div>
+      <div class="tl-label">오다이바 저녁 <span class="badge b-food">🍣 식사</span></div>
+      <div class="tl-sub">다이바시티 레스토랑 or 덱스 도쿄 비치</div>
+    </div>
+
+  </div></div>
 </section>
 
-<!-- ════════════════ 6일차 ════════════════ -->
+<!-- ═══ DAY 6 ═══ -->
 <section class="page-section" id="day6">
   <div class="section-header">
     <div class="section-day-badge">DAY 6</div>
     <div class="section-date">6월 8일 (월)</div>
-    <div class="section-theme">체크아웃 · 몽벨 타카나와 · 귀국</div>
+    <div class="section-theme">체크아웃 · 우에노 모리 ⭐ · 귀국</div>
   </div>
-  <div class="card">
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">08:00</div>
-        <div class="tl-label">조식 &amp; 짐 정리 <span class="badge b-food">☕ 아침</span></div>
-      </div>
-      <div class="tl-item" data-map="the square hotel GINZA" data-map-q="the square hotel GINZA Tokyo">
-        <div class="tl-dot hotel"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">11:00</div>
-        <div class="tl-label">호텔 체크아웃 <span class="badge b-hotel">🏨 숙소</span></div>
-        <div class="tl-sub">짐 보관 가능 여부 프런트 확인</div>
-      </div>
-      <div class="tl-item" data-map="하마리큐 정원" data-map-q="浜離宮恩賜庭園 Hamarikyu Gardens Tokyo">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">11:30</div>
-        <div class="tl-label">마지막 산책 <span class="badge b-spot">🌸 관광</span></div>
-        <div class="tl-sub">하마리큐 정원 or 긴자 주변</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot food"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">13:00</div>
-        <div class="tl-label">점심 <span class="badge b-food">🍜 식사</span></div>
-        <div class="tl-sub">도쿄 마지막 식사</div>
-      </div>
-      <div class="tl-item" data-map="몽벨 타카나와" data-map-q="mont-bell モンベル 高輪 Takanawa Tokyo">
-        <div class="tl-dot shop"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">14:30</div>
-        <div class="tl-label">몽벨 타카나와 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
-        <div class="tl-sub">시나가와 근처 · 마지막 몽벨 체크</div>
-      </div>
-      <div class="tl-item" data-map="도쿄 하네다 공항" data-map-q="Tokyo Haneda Airport HND">
-        <div class="tl-dot spot"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-        <div class="tl-time">15:30</div>
-        <div class="tl-label">하네다 공항 이동 <span class="badge b-spot">🚇 교통</span></div>
-        <div class="tl-sub">시나가와역 → 케이큐 공항선 → 하네다 약 13분</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot shop"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">17:00</div>
-        <div class="tl-label">면세점 &amp; 탑승 수속 <span class="badge b-shop">🛍 면세</span></div>
-        <div class="tl-sub">탑승 2시간 전 도착 권장</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot flight"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">19:55</div>
-        <div class="tl-label">Korean Air 출발 <span class="badge b-flight">✈ 항공</span></div>
-        <div class="tl-sub">HND → GMP</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot flight"></div>
-        <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-        <div class="tl-time">22:15</div>
-        <div class="tl-label">서울 김포 도착 🏠</div>
-        <div class="tl-sub">입국 심사 후 귀가</div>
-      </div>
+  <div class="card"><div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">08:00</div>
+      <div class="tl-label">조식 &amp; 짐 정리 <span class="badge b-food">☕ 아침</span></div>
     </div>
-  </div>
+
+    <div class="tl-item" data-map="긴자" data-map-q="銀座 Ginza Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">09:00</div>
+      <div class="tl-label">마지막 긴자 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">놓친 항목 최종 쇼핑 · 츠보야키이모 · safu · shigekuni</div>
+    </div>
+
+    <div class="tl-item" data-map="the square hotel GINZA" data-map-q="the square hotel GINZA Tokyo">
+      <div class="tl-dot hotel"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">11:00</div>
+      <div class="tl-label">호텔 체크아웃 (캐리어 보관) <span class="badge b-hotel">🏨 숙소</span></div>
+      <div class="tl-sub">캐리어 프런트 맡김 · 귀국 전 다시 픽업 예정</div>
+    </div>
+
+    <div class="tl-item" data-map="도쿄역 규탄" data-map-q="牛タン 東京駅 beef tongue Tokyo Station">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">11:30</div>
+      <div class="tl-label">점심 · 도쿄역 규탄 🎯 <span class="badge b-food">🐄 식사</span></div>
+      <div class="tl-sub">도쿄역 1층 레스토랑가 · 우에노 동선과 연결</div>
+    </div>
+
+    <div class="tl-item" data-map="긴자웨스트아오야마가든" data-map-q="Cafe 丸の内 Marunouchi Tokyo Station area rating 4.0">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">12:30</div>
+      <div class="tl-label">마루노우치 카페 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">⭐ 4.0+ · 도쿄역 주변 · 우에노 이동 전 여유</div>
+    </div>
+
+    <div class="tl-item" data-map="우에노역" data-map-q="上野駅 Ueno Station Tokyo JR">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">13:00</div>
+      <div class="tl-label">도쿄역 → 우에노역 이동 <span class="badge b-spot">🚃 교통</span></div>
+      <div class="tl-sub">JR 야마노테선 약 5분</div>
+    </div>
+
+    <div class="tl-item fixed-event" data-map="우에노모리 미술관" data-map-q="上野の森美術館 Ueno no Mori Museum Tokyo">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">13:30</div>
+      <div class="tl-label">🌟 우에노모리 미술관 · 반고흐 전시 <span class="badge b-fixed">⭐ 필수</span></div>
+      <div class="tl-sub">관람 약 1.5~2시간 · 우에노공원 산책 (선택)</div>
+    </div>
+
+    <div class="tl-item" data-map="the square hotel GINZA" data-map-q="the square hotel GINZA Tokyo">
+      <div class="tl-dot hotel"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">15:30</div>
+      <div class="tl-label">호텔 복귀 · 캐리어 픽업 <span class="badge b-hotel">🏨 숙소</span></div>
+      <div class="tl-sub">우에노 → 긴자 지하철 약 15분</div>
+    </div>
+
+    <div class="tl-item" data-map="몽벨 타카나와" data-map-q="mont-bell モンベル 高輪 Takanawa Shinagawa Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">16:30</div>
+      <div class="tl-label">몽벨 타카나와 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">시나가와 근처 · 빠른 마지막 몽벨 체크</div>
+    </div>
+
+    <div class="tl-item" data-map="도쿄 하네다 공항" data-map-q="Tokyo Haneda Airport HND International Terminal">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">17:00</div>
+      <div class="tl-label">시나가와 → 하네다 공항 <span class="badge b-spot">🚇 교통</span></div>
+      <div class="tl-sub">케이큐 공항선 직행 · 약 13분</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">17:30</div>
+      <div class="tl-label">면세점 &amp; 탑승 수속 <span class="badge b-shop">🛍 면세</span></div>
+      <div class="tl-sub">하네다 면세점 · 탑승 2시간 전 도착</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot flight"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">19:55</div>
+      <div class="tl-label">Korean Air 출발 <span class="badge b-flight">✈ 항공</span></div>
+      <div class="tl-sub">HND → GMP</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot flight"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">22:15</div>
+      <div class="tl-label">서울 김포 도착 🏠</div>
+      <div class="tl-sub">입국 심사 후 귀가</div>
+    </div>
+
+  </div></div>
 </section>
 
-<!-- ════════════════ 쇼핑 체크리스트 ════════════════ -->
+<!-- ═══ 체크리스트 ═══ -->
 <section class="page-section" id="checklist">
   <div class="section-header">
-    <div class="section-day-badge">SHOPPING</div>
-    <div class="section-date">쇼핑 체크리스트</div>
+    <div class="section-day-badge">CHECKLIST</div>
+    <div class="section-date">쇼핑 &amp; 방문 체크리스트</div>
     <div class="section-theme">탭하면 완료 처리됩니다</div>
   </div>
 
-  <div class="check-group">
-    <div class="check-group-title">📍 방문할 곳</div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">🏔</div>
-      <div><div class="check-label">신주쿠 알펜도쿄</div><div class="check-sub">신주쿠 · 아웃도어 전문점</div></div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">⛺</div>
-      <div><div class="check-label">몽벨 교바시</div><div class="check-sub">교바시 · Mont-bell 공식 매장</div></div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">🍱</div>
-      <div><div class="check-label">교바시 이세히로 야키토리동</div><div class="check-sub">교바시 · 야키토리덮밥 맛집</div></div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">🍡</div>
-      <div><div class="check-label">치쿠요테이</div><div class="check-sub">화과자 카페</div></div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">👕</div>
-      <div><div class="check-label">GU</div><div class="check-sub">시부야 or 신주쿠 플래그십</div></div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">🏪</div>
-      <div><div class="check-label">무인양품 (MUJI)</div><div class="check-sub">긴자 본점 or 유락초점</div></div>
-    </div>
-  </div>
-
+  <!-- 몽벨 -->
   <div class="check-group">
     <div class="check-group-title">⛺ 몽벨 구입 목록</div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">🪑</div>
-      <div><div class="check-label">몽벨 캠핑체어</div><div class="check-sub">빅릴렉스체어 확인</div></div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">🧊</div>
-      <div><div class="check-label">몽벨 보냉백</div><div class="check-sub">Cooler Bag</div></div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">🕶</div>
-      <div><div class="check-label">몽벨 선글라스</div><div class="check-sub">아웃도어용</div></div>
-    </div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🪑</div><div><div class="check-label">몽벨 캠핑체어</div><div class="check-sub">빅릴렉스체어 확인</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🧊</div><div><div class="check-label">몽벨 보냉백</div><div class="check-sub">Cooler Bag</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🕶</div><div><div class="check-label">몽벨 선글라스</div><div class="check-sub">아웃도어용</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☂️</div><div><div class="check-label">몽벨 양우산 60사이즈</div><div class="check-sub">60cm 사이즈 확인</div></div></div>
   </div>
 
+  <!-- 무인양품 -->
   <div class="check-group">
     <div class="check-group-title">🏪 무인양품 구입 목록</div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">🕯</div>
-      <div><div class="check-label">무인양품 향초</div><div class="check-sub">MUJI Scented Candle</div></div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"></div><div class="check-icon">😴</div>
-      <div><div class="check-label">무인양품 잠옷</div><div class="check-sub">MUJI Pajamas</div></div>
-    </div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🕯</div><div><div class="check-label">무인양품 향초</div><div class="check-sub">MUJI Scented Candle</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">😴</div><div><div class="check-label">무인양품 잠옷</div><div class="check-sub">MUJI Pajamas</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌸</div><div><div class="check-label">무인양품 고체향수</div><div class="check-sub">Solid Perfume</div></div></div>
   </div>
+
+  <!-- 약국 -->
+  <div class="check-group">
+    <div class="check-group-title">💊 약국 · 기타 구입</div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🦷</div><div><div class="check-label">치간칫솔</div><div class="check-sub">드럭스토어 · 마츠모토키요시 등</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌞</div><div><div class="check-label">비오레 선크림</div><div class="check-sub">Biore UV</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🧴</div><div><div class="check-label">클렌징폼</div><div class="check-sub">드럭스토어</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌿</div><div><div class="check-label">새싹보리</div><div class="check-sub">칼디 or 드럭스토어</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">💊</div><div><div class="check-label">고바야시 소슈겐</div><div class="check-sub">드럭스토어</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🥃</div><div><div class="check-label">위스키</div><div class="check-sub">칼디 · 리커숍 · 하네다 면세점</div></div></div>
+  </div>
+
+  <!-- 맛집·카페 -->
+  <div class="check-group">
+    <div class="check-group-title">🍽 맛집 · 카페</div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍜</div><div><div class="check-label">긴자 아부라소바</div><div class="check-sub">Day 1 점심</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍖</div><div><div class="check-label">긴자 이마카츠 / 와코돈카츠</div><div class="check-sub">Day 1 저녁 · 긴자 돈카츠</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍱</div><div><div class="check-label">교바시 이세히로 야키토리동</div><div class="check-sub">Day 5 점심</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🐄</div><div><div class="check-label">도쿄역 규탄</div><div class="check-sub">Day 6 점심 · 도쿄역 1층</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍣</div><div><div class="check-label">스시로 유락쵸</div><div class="check-sub">Day 5 · 유락초역 근처</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍳</div><div><div class="check-label">롯폰기 4ro 몬자야키</div><div class="check-sub">Day 4 점심</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">긴자웨스트아오야마가든</div><div class="check-sub">Day 1 점심 후 · ⭐4.2</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">리틀냅 커피로스터스</div><div class="check-sub">Day 3 점심 후 · 요요기 · ⭐4.4</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">시부야 스트리머커피</div><div class="check-sub">Day 3 오후 · ⭐4.1</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍡</div><div><div class="check-label">치쿠요테이 긴자</div><div class="check-sub">Day 5 점심 후 · 화과자</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍠</div><div><div class="check-label">츠보야키이모</div><div class="check-sub">긴자 or 시부야 주변 · 군고구마</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🎵</div><div><div class="check-label">도쿄 재즈바</div><div class="check-sub">저녁 이후 · 긴자 or 신주쿠</div></div></div>
+  </div>
+
+  <!-- 쇼핑 스팟 -->
+  <div class="check-group">
+    <div class="check-group-title">🛍 쇼핑 · 라이프스타일</div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏔</div><div><div class="check-label">신주쿠 알펜도쿄</div><div class="check-sub">Day 4 · 아웃도어 전문점</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">⛺</div><div><div class="check-label">몽벨 교바시</div><div class="check-sub">Day 5</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">⛺</div><div><div class="check-label">몽벨 시부야</div><div class="check-sub">Day 3 · 시부야 파르코 근처</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">⛺</div><div><div class="check-label">몽벨 타카나와</div><div class="check-sub">Day 6 · 시나가와 경유</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">👕</div><div><div class="check-label">GU 긴자</div><div class="check-sub">Day 1</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏪</div><div><div class="check-label">무인양품 긴자 본점</div><div class="check-sub">Day 1</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛒</div><div><div class="check-label">스탠다드 프로덕트 긴자</div><div class="check-sub">Day 1 · 다이소 프리미엄 라인</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">📚</div><div><div class="check-label">긴자 로프트</div><div class="check-sub">Day 1</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">📚</div><div><div class="check-label">시부야 로프트</div><div class="check-sub">Day 3</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🧥</div><div><div class="check-label">긴자 도버스트리트마켓</div><div class="check-sub">Day 1</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏬</div><div><div class="check-label">긴자식스</div><div class="check-sub">Day 1</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">💎</div><div><div class="check-label">긴자 롯데면세점</div><div class="check-sub">Day 1 저녁</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏬</div><div><div class="check-label">시부야 파르코백화점</div><div class="check-sub">Day 3</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏛</div><div><div class="check-label">KITTE</div><div class="check-sub">Day 5 · 도쿄역 앞</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌿</div><div><div class="check-label">푸에브코</div><div class="check-sub">Day 2 · 다이칸야마</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🧥</div><div><div class="check-label">르메르 에비스</div><div class="check-sub">Day 2 · Lemaire</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">에비스 sisiri</div><div class="check-sub">Day 2</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">에비스 harvest</div><div class="check-sub">Day 2</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏙</div><div><div class="check-label">롯폰기힐즈</div><div class="check-sub">Day 4</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏙</div><div><div class="check-label">아자부다이힐즈</div><div class="check-sub">Day 4</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">긴자웨스트아오야마가든</div><div class="check-sub">Day 1 점심 후</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌊</div><div><div class="check-label">나카메구로</div><div class="check-sub">Day 2 · 메구로강 수변</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🎨</div><div><div class="check-label">우에노모리 미술관 (반고흐)</div><div class="check-sub">Day 6 · 13:30 필수</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛒</div><div><div class="check-label">칼디 (KALDI)</div><div class="check-sub">Day 5 · 새싹보리 · 위스키</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">safu</div><div class="check-sub">Day 6 오전</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">shigekuni</div><div class="check-sub">Day 6 오전</div></div></div>
+  </div>
+
 </section>
 
 <footer>🗼 도쿄 여행 2026 · 6.3(수) – 6.8(월)</footer>
 
-<!-- ════════════════ 지도 오버레이 ════════════════ -->
+<!-- 지도 오버레이 -->
 <div class="map-overlay" id="mapOverlay" onclick="handleOverlayClick(event)">
   <div class="map-sheet" id="mapSheet">
     <div class="map-sheet-handle">
@@ -920,9 +832,7 @@
       <button class="map-sheet-close" onclick="closeMap()">✕</button>
     </div>
     <div class="map-sheet-actions">
-      <a class="map-open-link" id="mapOpenLink" target="_blank" rel="noopener">
-        Google Maps 앱으로 열기 ↗
-      </a>
+      <a class="map-open-link" id="mapOpenLink" target="_blank" rel="noopener">Google Maps 앱으로 열기 ↗</a>
     </div>
     <div class="map-frame-wrap">
       <iframe id="mapFrame" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -931,58 +841,40 @@
 </div>
 
 <script>
-  /* ── Map overlay ── */
   function openMap(item) {
-    const q     = item.getAttribute('data-map-q');
+    const q = item.getAttribute('data-map-q');
     const title = item.getAttribute('data-map');
     if (!q) return;
-
     document.getElementById('mapTitle').textContent = title;
-
-    const encoded = encodeURIComponent(q);
-    document.getElementById('mapFrame').src =
-      'https://maps.google.com/maps?q=' + encoded + '&output=embed&hl=ko&z=16';
-    document.getElementById('mapOpenLink').href =
-      'https://maps.google.com/maps?q=' + encoded;
-
+    const enc = encodeURIComponent(q);
+    document.getElementById('mapFrame').src = 'https://maps.google.com/maps?q=' + enc + '&output=embed&hl=ko&z=16';
+    document.getElementById('mapOpenLink').href = 'https://maps.google.com/maps?q=' + enc;
     document.getElementById('mapOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-
   function closeMap() {
     document.getElementById('mapOverlay').classList.remove('open');
     document.body.style.overflow = '';
-    // slight delay so sheet animates out before clearing src
     setTimeout(() => { document.getElementById('mapFrame').src = ''; }, 300);
   }
-
   function handleOverlayClick(e) {
     if (e.target === document.getElementById('mapOverlay')) closeMap();
   }
 
-  /* ── Timeline check ── */
   function toggleTl(item) {
     item.classList.toggle('done');
     item.querySelector('.tl-check-btn').textContent = item.classList.contains('done') ? '✓' : '';
     saveAll();
   }
-
-  /* ── Shopping checklist ── */
   function toggleCheck(el) {
     el.classList.toggle('done');
     el.querySelector('.check-box').textContent = el.classList.contains('done') ? '✓' : '';
     saveAll();
   }
-
   function saveAll() {
-    localStorage.setItem('t26-tl', JSON.stringify(
-      Array.from(document.querySelectorAll('.tl-item')).map(i => i.classList.contains('done'))
-    ));
-    localStorage.setItem('t26-ch', JSON.stringify(
-      Array.from(document.querySelectorAll('.check-item')).map(i => i.classList.contains('done'))
-    ));
+    localStorage.setItem('t26-tl', JSON.stringify(Array.from(document.querySelectorAll('.tl-item')).map(i => i.classList.contains('done'))));
+    localStorage.setItem('t26-ch', JSON.stringify(Array.from(document.querySelectorAll('.check-item')).map(i => i.classList.contains('done'))));
   }
-
   function loadAll() {
     const tl = localStorage.getItem('t26-tl');
     if (tl) JSON.parse(tl).forEach((done, i) => {
@@ -997,10 +889,8 @@
   }
   loadAll();
 
-  /* ── Active nav on scroll ── */
   const sections = document.querySelectorAll('.page-section');
   const navBtns  = document.querySelectorAll('.nav-btn');
-
   function updateNav() {
     let cur = 0;
     sections.forEach((s, i) => { if (window.scrollY >= s.offsetTop - 62) cur = i; });
