@@ -127,7 +127,9 @@
 
     footer { text-align: center; padding: 32px 16px 48px; background: var(--navy); color: rgba(255,255,255,.4); font-size: 12px; }
 
-    /* Meal & cafe tinting */
+    .section-day-badge.opt { background: var(--purple); }
+    .opt-note { display: inline-block; background: var(--purple-light); color: var(--purple); border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 700; margin-bottom: 10px; }
+
     .tl-item:has(.tl-dot.food) { background: #edfbf2; }
     .tl-item:has(.tl-dot.cafe) { background: #e5f6f4; }
     .tl-item.fixed-event { border-left: 3px solid var(--gold); background: var(--gold-light) !important; }
@@ -158,6 +160,7 @@
     <a class="nav-btn" href="#day4">4일차</a>
     <a class="nav-btn" href="#day5">5일차</a>
     <a class="nav-btn" href="#day6">6일차</a>
+    <a class="nav-btn" href="#optional">나카·다이칸</a>
     <a class="nav-btn" href="#checklist">체크리스트</a>
   </div>
 </nav>
@@ -710,6 +713,93 @@
       <div class="tl-time">22:15</div>
       <div class="tl-label">서울 김포 도착 🏠</div>
       <div class="tl-sub">입국 심사 후 귀가</div>
+    </div>
+
+  </div></div>
+</section>
+
+<!-- ═══ OPTIONAL ═══ -->
+<section class="page-section" id="optional">
+  <div class="section-header">
+    <div class="section-day-badge opt">OPTIONAL</div>
+    <div class="section-date">나카메구로 · 다이칸야마</div>
+    <div class="section-theme">멀티숍 · 카페 · 메구로강</div>
+  </div>
+
+  <p class="opt-note" style="display:block;text-align:center;">⚠️ 본 일정은 여유가 생길 경우 대체 또는 추가로 활용하세요</p>
+
+  <div class="card"><div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">10:00</div>
+      <div class="tl-label">긴자역 → 나카메구로역 이동 <span class="badge b-spot">🚇 교통</span></div>
+      <div class="tl-sub">히비야선 긴자역 → 나카메구로역 약 15분</div>
+    </div>
+
+    <div class="tl-item" data-map="메구로강" data-map-q="目黒川 Meguro River Nakameguro Tokyo walk boutique">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">10:15</div>
+      <div class="tl-label">메구로강변 산책 & 멀티숍 <span class="badge b-spot">🌊 관광</span></div>
+      <div class="tl-sub">강변 빈티지숍 · COW BOOKS · Traveler's Factory · 갤러리</div>
+    </div>
+
+    <div class="tl-item" data-map="스타벅스 리저브 로스터리 도쿄" data-map-q="Starbucks Reserve Roastery Tokyo Nakameguro 目黒川">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">11:00</div>
+      <div class="tl-label">스타벅스 리저브 로스터리 도쿄 🎯 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">나카메구로강변 · 4층 로스터리 · ⭐ 4.3 · 웨이팅 각오</div>
+    </div>
+
+    <div class="tl-item" data-map="나카메구로" data-map-q="中目黒 Nakameguro Tokyo lunch">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">12:30</div>
+      <div class="tl-label">점심 · 나카메구로 자유식사 <span class="badge b-food">🍽 식사</span></div>
+      <div class="tl-sub">강변 레스토랑 · 카페 식사 · 자유 선택</div>
+    </div>
+
+    <div class="tl-item" data-map="다이칸야마 T사이트" data-map-q="代官山 T-SITE TSUTAYA BOOKS Daikanyama Tokyo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">14:00</div>
+      <div class="tl-label">다이칸야마 T사이트 (Tsutaya Books) 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">대형 서점+라이프스타일샵 · 내부 카페 · 나카메구로역 도보 10분</div>
+    </div>
+
+    <div class="tl-item" data-map="힐사이드 테라스" data-map-q="ヒルサイドテラス Hillside Terrace Daikanyama Tokyo">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">15:00</div>
+      <div class="tl-label">힐사이드 테라스 & LOG ROAD <span class="badge b-spot">🌿 관광</span></div>
+      <div class="tl-sub">다이칸야마 복합 갤러리·부티크 단지 · LOG ROAD 멀티숍</div>
+    </div>
+
+    <div class="tl-item" data-map="다이칸야마" data-map-q="代官山 Daikanyama Tokyo vintage boutique multishop">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">16:00</div>
+      <div class="tl-label">다이칸야마 멀티숍 탐방 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">빈티지 의류 · 인테리어 · 라이프스타일 독립샵 밀집 지역</div>
+    </div>
+
+    <div class="tl-item" data-map="다이칸야마 카페" data-map-q="代官山 カフェ Daikanyama cafe Tokyo specialty coffee">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">17:00</div>
+      <div class="tl-label">다이칸야마 카페 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">SIGN · 몽크카페 등 스페셜티 커피 · 골목 카페 자유 선택</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">18:00</div>
+      <div class="tl-label">다이칸야마역 → 긴자 귀환 <span class="badge b-spot">🚇 교통</span></div>
+      <div class="tl-sub">도큐 토요코선 다이칸야마역 → 시부야역 · 긴자선 → 긴자역 약 25분</div>
     </div>
 
   </div></div>
