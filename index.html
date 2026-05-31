@@ -126,6 +126,19 @@
     .map-frame-wrap iframe { width: 100%; height: 100%; min-height: 320px; border: none; display: block; }
 
     footer { text-align: center; padding: 32px 16px 48px; background: var(--navy); color: rgba(255,255,255,.4); font-size: 12px; }
+
+    /* Meal & cafe tinting */
+    .tl-item:has(.tl-dot.food) { background: #edfbf2; }
+    .tl-item:has(.tl-dot.cafe) { background: #e5f6f4; }
+    .tl-item.fixed-event { border-left: 3px solid var(--gold); background: var(--gold-light) !important; }
+
+    /* Route map */
+    .route-map { display: flex; flex-direction: column; gap: 10px; }
+    .route-row { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .route-row:last-child { border-bottom: none; }
+    .route-label { font-size: 11px; font-weight: 700; color: var(--muted); min-width: 62px; flex-shrink: 0; }
+    .route-stop { display: inline-flex; align-items: center; background: var(--navy); color: #fff; border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .route-arr { font-size: 11px; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -185,13 +198,47 @@
     <div class="info-row"><span class="info-key">상태</span><span class="info-val" style="color:var(--green)">✅ 예약 확정</span></div>
   </div>
   <div class="card">
-    <div class="card-label">🗓 일별 지역 요약</div>
-    <div class="info-row"><span class="info-key">Day 1 · 6/3 수</span><span class="info-val">하네다 → 긴자</span></div>
-    <div class="info-row"><span class="info-key">Day 2 · 6/4 목</span><span class="info-val">롯폰기 · 아자부다이 ☂️</span></div>
-    <div class="info-row"><span class="info-key">Day 3 · 6/5 금</span><span class="info-val">긴자 · 히비야(임페리얼)</span></div>
-    <div class="info-row"><span class="info-key">Day 4 · 6/6 토</span><span class="info-val">하라주쿠 · 아오야마 · 에비스</span></div>
-    <div class="info-row"><span class="info-key">Day 5 · 6/7 일</span><span class="info-val">교바시 · 유락초 · 히비야</span></div>
-    <div class="info-row"><span class="info-key">Day 6 · 6/8 월</span><span class="info-val">긴자 → 우에노 → 하네다</span></div>
+    <div class="card-label">🗺 일별 동선 지도</div>
+    <div class="route-map">
+      <div class="route-row">
+        <span class="route-label">D1 · 수</span>
+        <span class="route-stop">하네다</span><span class="route-arr">→</span>
+        <span class="route-stop">긴자</span>
+      </div>
+      <div class="route-row">
+        <span class="route-label">D2 · 목 ☂️</span>
+        <span class="route-stop">긴자</span><span class="route-arr">→</span>
+        <span class="route-stop">롯폰기</span><span class="route-arr">→</span>
+        <span class="route-stop">아자부다이</span>
+      </div>
+      <div class="route-row">
+        <span class="route-label">D3 · 금</span>
+        <span class="route-stop">긴자</span><span class="route-arr">→</span>
+        <span class="route-stop">히비야</span><span class="route-arr">→</span>
+        <span class="route-stop">에비스</span>
+      </div>
+      <div class="route-row">
+        <span class="route-label">D4 · 토</span>
+        <span class="route-stop">긴자</span><span class="route-arr">→</span>
+        <span class="route-stop">오모테산도</span><span class="route-arr">→</span>
+        <span class="route-stop">하라주쿠</span><span class="route-arr">→</span>
+        <span class="route-stop">아오야마</span>
+      </div>
+      <div class="route-row">
+        <span class="route-label">D5 · 일</span>
+        <span class="route-stop">긴자</span><span class="route-arr">→</span>
+        <span class="route-stop">교바시</span><span class="route-arr">→</span>
+        <span class="route-stop">유락초</span><span class="route-arr">→</span>
+        <span class="route-stop">히비야</span>
+      </div>
+      <div class="route-row">
+        <span class="route-label">D6 · 월</span>
+        <span class="route-stop">긴자</span><span class="route-arr">→</span>
+        <span class="route-stop">우에노</span><span class="route-arr">→</span>
+        <span class="route-stop">긴자</span><span class="route-arr">→</span>
+        <span class="route-stop">하네다</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -336,14 +383,6 @@
       <div class="tl-sub">카페 · 라이프스타일</div>
     </div>
 
-    <div class="tl-item" data-map="아자부다이힐즈 카페" data-map-q="麻布台ヒルズ cafe Azabudai Hills Tokyo">
-      <div class="tl-dot cafe"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">14:30</div>
-      <div class="tl-label">아자부다이힐즈 카페 <span class="badge b-cafe">☕ 카페</span></div>
-      <div class="tl-sub">⭐ 4.2+ · 힐즈 내 실내 카페</div>
-    </div>
-
     <div class="tl-item" data-map="롯폰기힐즈" data-map-q="六本木ヒルズ Roppongi Hills shops Tokyo">
       <div class="tl-dot shop"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
@@ -388,12 +427,12 @@
       <div class="tl-sub">긴자 · 유락초 주변 자유 식사</div>
     </div>
 
-    <div class="tl-item" data-map="히가시야긴자" data-map-q="HIGASHIYA GINZA 東屋 銀座 Tokyo">
-      <div class="tl-dot cafe"></div>
+    <div class="tl-item" data-map="임페리얼호텔 도쿄" data-map-q="帝国ホテル東京 Imperial Hotel Tokyo Hibiya">
+      <div class="tl-dot spot"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
       <div class="tl-time">13:00</div>
-      <div class="tl-label">히가시야 긴자 🎯 <span class="badge b-cafe">☕ 카페</span></div>
-      <div class="tl-sub">⭐ 4.3 · 긴자 전통 화과자 카페</div>
+      <div class="tl-label">임페리얼호텔 로비 구경 <span class="badge b-spot">🏛 관광</span></div>
+      <div class="tl-sub">히비야 · 1890년 개업 클래식 호텔 · 애프터눈티 전 여유</div>
     </div>
 
     <div class="tl-item fixed-event" data-map="임페리얼호텔 도쿄" data-map-q="帝国ホテル東京 Imperial Hotel Tokyo Hibiya">
@@ -404,20 +443,36 @@
       <div class="tl-sub">Imperial Hotel Tokyo · 히비야 · 예약 확정</div>
     </div>
 
-    <div class="tl-item" data-map="긴자 롯데면세점" data-map-q="ロッテ免税店 銀座 Lotte Duty Free Ginza">
-      <div class="tl-dot shop"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+    <div class="tl-item">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
       <div class="tl-time">16:30</div>
-      <div class="tl-label">긴자 저녁 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
-      <div class="tl-sub">롯데면세점 · 긴자 거리 산책</div>
+      <div class="tl-label">히비야선 → 에비스역 이동 <span class="badge b-spot">🚇 교통</span></div>
+      <div class="tl-sub">히비야역(히비야선) → 에비스역 약 5분</div>
     </div>
 
-    <div class="tl-item" data-map="스시로 유락쵸" data-map-q="スシロー 有楽町 Sushiro Yurakucho Tokyo">
+    <div class="tl-item" data-map="에비스 쇼핑" data-map-q="恵比寿 Ebisu Tokyo Puebco Lemaire sisiri harvest">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">17:00</div>
+      <div class="tl-label">에비스 쇼핑 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">푸에브코 · 르메르 · sisiri · harvest</div>
+    </div>
+
+    <div class="tl-item" data-map="시게쿠니" data-map-q="シゲクニ 恵比寿 Shigekuni Ebisu Tokyo">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">18:30</div>
+      <div class="tl-label">시게쿠니(Shigekuni) 🎯 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">에비스 카페 · ⭐ 4.0+</div>
+    </div>
+
+    <div class="tl-item" data-map="에비스 브루어리 도쿄" data-map-q="ヱビスビール記念館 Yebisu Brewery Tokyo Museum Ebisu">
       <div class="tl-dot food"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">19:00</div>
-      <div class="tl-label">저녁 · 스시로 유락쵸 🎯 <span class="badge b-food">🍣 식사</span></div>
-      <div class="tl-sub">긴자역에서 도보 10분 · 회전초밥</div>
+      <div class="tl-time">19:30</div>
+      <div class="tl-label">저녁 · 에비스 브루어리 도쿄 🎯 <span class="badge b-food">🍺 식사</span></div>
+      <div class="tl-sub">에비스가든플레이스 · 히비야선 에비스역 → 긴자역 귀환 약 15분</div>
     </div>
 
   </div></div>
@@ -428,7 +483,7 @@
   <div class="section-header">
     <div class="section-day-badge">DAY 4</div>
     <div class="section-date">6월 6일 (토)</div>
-    <div class="section-theme">하라주쿠 · 오모테산도 · 아오야마 · 에비스</div>
+    <div class="section-theme">하라주쿠 · 오모테산도 · 아오야마</div>
   </div>
   <div class="card"><div class="timeline">
 
@@ -472,36 +527,20 @@
       <div class="tl-sub">갤러리 · 부티크 · 아오야마 골목 탐방</div>
     </div>
 
-    <div class="tl-item" data-map="나카메구로" data-map-q="中目黒 Nakameguro Tokyo canal Meguro River">
-      <div class="tl-dot spot"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">15:30</div>
-      <div class="tl-label">나카메구로 · 메구로강 산책 🎯 <span class="badge b-spot">🌊 관광</span></div>
-      <div class="tl-sub">아오야마에서 도보 약 25분 · 감성 수변 카페 거리</div>
-    </div>
-
-    <div class="tl-item" data-map="에비스 쇼핑" data-map-q="恵比寿 Ebisu Tokyo Puebco Lemaire sisiri harvest">
-      <div class="tl-dot shop"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">17:00</div>
-      <div class="tl-label">에비스 쇼핑 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
-      <div class="tl-sub">나카메구로에서 도보 15분 · 푸에브코 · 르메르 · sisiri · harvest</div>
-    </div>
-
-    <div class="tl-item" data-map="시게쿠니" data-map-q="シゲクニ 恵比寿 Shigekuni Ebisu Tokyo">
-      <div class="tl-dot cafe"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">17:30</div>
-      <div class="tl-label">시게쿠니(Shigekuni) 🎯 <span class="badge b-cafe">☕ 카페</span></div>
-      <div class="tl-sub">에비스 카페 · ⭐ 4.0+</div>
-    </div>
-
-    <div class="tl-item" data-map="에비스 브루어리 도쿄" data-map-q="ヱビスビール記念館 Yebisu Brewery Tokyo Museum Ebisu">
+    <div class="tl-item" data-map="아오야마" data-map-q="南青山 Minami Aoyama Tokyo dinner restaurant">
       <div class="tl-dot food"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">19:00</div>
-      <div class="tl-label">저녁 · 에비스 브루어리 도쿄 🎯 <span class="badge b-food">🍺 식사</span></div>
-      <div class="tl-sub">에비스가든플레이스 · 히비야선 에비스역 → 긴자역 귀환 약 15분</div>
+      <div class="tl-time">18:00</div>
+      <div class="tl-label">저녁 · 아오야마 레스토랑 <span class="badge b-food">🍽 식사</span></div>
+      <div class="tl-sub">아오야마 · 미나미아오야마 주변 저녁</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot spot"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
+      <div class="tl-time">20:00</div>
+      <div class="tl-label">긴자로 귀환 <span class="badge b-spot">🚇 교통</span></div>
+      <div class="tl-sub">긴자선 오모테산도역 → 긴자역 약 15분</div>
     </div>
 
   </div></div>
@@ -540,14 +579,6 @@
       <div class="tl-sub">교바시 명물 야키토리덮밥 · 줄서기 각오</div>
     </div>
 
-    <div class="tl-item" data-map="치쿠요테이 긴자" data-map-q="竹葉亭 銀座 Chikuyotei Ginza Tokyo">
-      <div class="tl-dot cafe"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">13:30</div>
-      <div class="tl-label">치쿠요테이 긴자 🎯 <span class="badge b-cafe">☕ 카페</span></div>
-      <div class="tl-sub">⭐ 4.1 · 화과자 디저트</div>
-    </div>
-
     <div class="tl-item" data-map="칼디 유락초" data-map-q="KALDI Coffee Farm 有楽町 Yurakucho Tokyo">
       <div class="tl-dot shop"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
@@ -572,12 +603,12 @@
       <div class="tl-sub">유락초에서 도보 5분 · 쇼핑몰 · 히비야공원 산책</div>
     </div>
 
-    <div class="tl-item" data-map="히비야 이자카야" data-map-q="日比谷 居酒屋 Hibiya izakaya Tokyo dinner">
+    <div class="tl-item" data-map="네기시 긴자나미키도리점" data-map-q="ねぎし 銀座並木通り店 Negishi Ginza Namikidori beef tongue Tokyo">
       <div class="tl-dot food"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
       <div class="tl-time">19:00</div>
-      <div class="tl-label">저녁 · 히비야 · 유락초 이자카야 <span class="badge b-food">🍻 식사</span></div>
-      <div class="tl-sub">히비야 · 유락초 이자카야 거리</div>
+      <div class="tl-label">저녁 · 네기시 긴자나미키도리점 🎯 <span class="badge b-food">🐄 식사</span></div>
+      <div class="tl-sub">긴자나미키도리 · 규탄(우설) 정식 · ⭐ 4.0+</div>
     </div>
 
   </div></div>
@@ -651,7 +682,7 @@
     <div class="tl-item" data-map="도쿄 하네다 공항" data-map-q="Tokyo Haneda Airport HND International Terminal 3">
       <div class="tl-dot spot"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">17:00</div>
+      <div class="tl-time">16:00</div>
       <div class="tl-label">긴자 → 하네다 공항 <span class="badge b-spot">🚇 교통</span></div>
       <div class="tl-sub">히가시긴자(도에이아사쿠사선) → 센가쿠지 → 케이큐공항선 직행 · 약 30분</div>
     </div>
@@ -659,9 +690,9 @@
     <div class="tl-item">
       <div class="tl-dot shop"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-      <div class="tl-time">17:30</div>
+      <div class="tl-time">16:30</div>
       <div class="tl-label">면세점 &amp; 탑승 수속 <span class="badge b-shop">🛍 면세</span></div>
-      <div class="tl-sub">하네다 면세점 · 탑승 2시간 전 도착</div>
+      <div class="tl-sub">하네다 면세점 · 탑승 3시간 전 도착</div>
     </div>
 
     <div class="tl-item">
@@ -734,15 +765,12 @@
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍜</div><div><div class="check-label">긴자 아부라소바</div><div class="check-sub">Day 1 저녁</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">카페 드 람브르</div><div class="check-sub">Day 1 점심 후 · ⭐4.3 · 긴자 8초메</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍳</div><div><div class="check-label">롯폰기 4ro 몬자야키</div><div class="check-sub">Day 2 점심</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">아자부다이힐즈 카페</div><div class="check-sub">Day 2 점심 후 · ⭐4.2+</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍣</div><div><div class="check-label">스시로 유락쵸</div><div class="check-sub">Day 3 저녁 · 유락초역 근처</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">카페 드 람브르</div><div class="check-sub">Day 3 점심 후 · 긴자 8초메 · ⭐4.3</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">히가시야 긴자</div><div class="check-sub">Day 3 점심 후 · ⭐4.3 · 화과자 카페</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">긴자웨스트아오야마가든</div><div class="check-sub">Day 4 아오야마 · ⭐4.2 · 엘리제 쿠키</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">시게쿠니(Shigekuni)</div><div class="check-sub">Day 4 카페 · 에비스</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍺</div><div><div class="check-label">에비스 브루어리 도쿄</div><div class="check-sub">Day 4 저녁 · 에비스가든플레이스</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">시게쿠니(Shigekuni)</div><div class="check-sub">Day 3 카페 · 에비스</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍺</div><div><div class="check-label">에비스 브루어리 도쿄</div><div class="check-sub">Day 3 저녁 · 에비스가든플레이스</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍱</div><div><div class="check-label">교바시 이세히로 야키토리동</div><div class="check-sub">Day 5 점심</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍡</div><div><div class="check-label">치쿠요테이 긴자</div><div class="check-sub">Day 5 점심 후 · 화과자</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🐄</div><div><div class="check-label">네기시 긴자나미키도리점</div><div class="check-sub">Day 5 저녁 · 긴자 규탄(우설)</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🐄</div><div><div class="check-label">도쿄역 규탄</div><div class="check-sub">Day 6 점심 · 도쿄역 1층</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍠</div><div><div class="check-label">츠보야키이모</div><div class="check-sub">긴자 주변 · 군고구마</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🎵</div><div><div class="check-label">도쿄 재즈바</div><div class="check-sub">저녁 이후 · 긴자 주변</div></div></div>
@@ -761,11 +789,10 @@
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏙</div><div><div class="check-label">롯폰기힐즈 · 모리미술관</div><div class="check-sub">Day 2</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏙</div><div><div class="check-label">아자부다이힐즈</div><div class="check-sub">Day 2</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">사푸(safu)</div><div class="check-sub">Day 2 · 라이프스타일</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌿</div><div><div class="check-label">푸에브코(Puebco)</div><div class="check-sub">Day 4 · 에비스 주변</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🧥</div><div><div class="check-label">르메르 에비스(Lemaire)</div><div class="check-sub">Day 4 · 에비스</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">에비스 sisiri</div><div class="check-sub">Day 4</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">에비스 harvest</div><div class="check-sub">Day 4</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌊</div><div><div class="check-label">나카메구로</div><div class="check-sub">Day 4 · 메구로강 수변</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌿</div><div><div class="check-label">푸에브코(Puebco)</div><div class="check-sub">Day 3 · 에비스</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🧥</div><div><div class="check-label">르메르 에비스(Lemaire)</div><div class="check-sub">Day 3 · 에비스</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">에비스 sisiri</div><div class="check-sub">Day 3 · 에비스</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">에비스 harvest</div><div class="check-sub">Day 3 · 에비스</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">⛺</div><div><div class="check-label">몽벨 교바시</div><div class="check-sub">Day 5</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏛</div><div><div class="check-label">KITTE</div><div class="check-sub">Day 5 · 도쿄역 앞</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛒</div><div><div class="check-label">칼디 (KALDI)</div><div class="check-sub">Day 5 · 새싹보리 · 위스키</div></div></div>
