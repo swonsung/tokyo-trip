@@ -160,7 +160,6 @@
     <a class="nav-btn" href="#day4">4일차</a>
     <a class="nav-btn" href="#day5">5일차</a>
     <a class="nav-btn" href="#day6">6일차</a>
-    <a class="nav-btn" href="#optional">나카·다이칸</a>
     <a class="nav-btn" href="#checklist">체크리스트</a>
   </div>
 </nav>
@@ -231,8 +230,8 @@
       <div class="route-row">
         <span class="route-label">D5 · 일</span>
         <span class="route-stop">긴자</span><span class="route-arr">→</span>
-        <span class="route-stop">시부야</span><span class="route-arr">→</span>
-        <span class="route-stop">오쿠시부야</span><span class="route-arr">→</span>
+        <span class="route-stop">나카메구로</span><span class="route-arr">→</span>
+        <span class="route-stop">다이칸야마</span><span class="route-arr">→</span>
         <span class="route-stop">긴자</span>
       </div>
       <div class="route-row">
@@ -603,70 +602,86 @@
   <div class="section-header">
     <div class="section-day-badge">DAY 5</div>
     <div class="section-date">6월 7일 (일)</div>
-    <div class="section-theme">시부야 · 오쿠시부야</div>
+    <div class="section-theme">나카메구로 · 다이칸야마</div>
   </div>
   <div class="card"><div class="timeline">
 
     <div class="tl-item">
       <div class="tl-dot spot"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-      <div class="tl-time">09:30</div>
-      <div class="tl-label">긴자선 → 시부야역 이동 <span class="badge b-spot">🚇 교통</span></div>
-      <div class="tl-sub">긴자역(긴자선) → 시부야역 약 20분</div>
+      <div class="tl-time">10:00</div>
+      <div class="tl-label">긴자역 → 나카메구로역 이동 <span class="badge b-spot">🚇 교통</span></div>
+      <div class="tl-sub">히비야선 긴자역 → 나카메구로역 약 15분</div>
     </div>
 
-    <div class="tl-item" data-map="시부야" data-map-q="渋谷 Shibuya Tokyo lunch restaurant">
-      <div class="tl-dot food"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">10:30</div>
-      <div class="tl-label">점심 · 시부야 자유식사 <span class="badge b-food">🍽 식사</span></div>
-      <div class="tl-sub">시부야 도착 후 · 오쿠시부야 이동 전 자유 식사</div>
-    </div>
-
-    <div class="tl-item" data-map="오쿠시부야" data-map-q="奥渋谷 Oku-Shibuya Kamiyamacho Tokyo vintage boutique">
+    <div class="tl-item" data-map="메구로강" data-map-q="目黒川 Meguro River Nakameguro Tokyo walk boutique">
       <div class="tl-dot spot"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">12:00</div>
-      <div class="tl-label">오쿠시부야 탐방 <span class="badge b-spot">🌿 관광</span></div>
-      <div class="tl-sub">카미야마초 · 빈티지숍 · 독립 카페 골목</div>
+      <div class="tl-time">10:15</div>
+      <div class="tl-label">메구로강변 산책 & 멀티숍 <span class="badge b-spot">🌊 관광</span></div>
+      <div class="tl-sub">강변 빈티지숍 · COW BOOKS · Traveler's Factory · 갤러리</div>
     </div>
 
-    <div class="tl-item" data-map="시부야 파르코" data-map-q="渋谷PARCO Shibuya PARCO Tokyo Puebco Nintendo">
+    <div class="tl-item" data-map="스타벅스 리저브 로스터리 도쿄" data-map-q="Starbucks Reserve Roastery Tokyo Nakameguro 目黒川">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">11:00</div>
+      <div class="tl-label">스타벅스 리저브 로스터리 도쿄 🎯 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">나카메구로강변 · 4층 로스터리 · ⭐ 4.3 · 웨이팅 각오</div>
+    </div>
+
+    <div class="tl-item" data-map="나카메구로" data-map-q="中目黒 Nakameguro Tokyo lunch">
+      <div class="tl-dot food"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">12:30</div>
+      <div class="tl-label">점심 · 나카메구로 자유식사 <span class="badge b-food">🍽 식사</span></div>
+      <div class="tl-sub">강변 레스토랑 · 카페 식사 · 자유 선택</div>
+    </div>
+
+    <div class="tl-item" data-map="다이칸야마 T사이트" data-map-q="代官山 T-SITE TSUTAYA BOOKS Daikanyama Tokyo">
       <div class="tl-dot shop"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
       <div class="tl-time">14:00</div>
-      <div class="tl-label">시부야 파르코 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
-      <div class="tl-sub">푸에브코(Puebco) · 닌텐도 팝업 · 각 층 탐방</div>
+      <div class="tl-label">다이칸야마 T사이트 (Tsutaya Books) 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">대형 서점+라이프스타일샵 · 내부 카페 · 나카메구로역 도보 10분</div>
     </div>
 
-    <div class="tl-item" data-map="스트리머 커피 시부야" data-map-q="Streamer Coffee Company 渋谷 奥渋谷 Shibuya Tokyo">
-      <div class="tl-dot cafe"></div>
+    <div class="tl-item" data-map="힐사이드 테라스" data-map-q="ヒルサイドテラス Hillside Terrace Daikanyama Tokyo">
+      <div class="tl-dot spot"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">16:00</div>
-      <div class="tl-label">스트리머 커피 🎯 <span class="badge b-cafe">☕ 카페</span></div>
-      <div class="tl-sub">오쿠시부야 · 라떼아트 유명 스페셜티 커피</div>
+      <div class="tl-time">15:00</div>
+      <div class="tl-label">힐사이드 테라스 & LOG ROAD <span class="badge b-spot">🌿 관광</span></div>
+      <div class="tl-sub">다이칸야마 복합 갤러리·부티크 단지 · LOG ROAD 멀티숍</div>
     </div>
 
-    <div class="tl-item" data-map="칼디 시부야" data-map-q="KALDI Coffee Farm 渋谷 Shibuya Tokyo">
+    <div class="tl-item" data-map="다이칸야마" data-map-q="代官山 Daikanyama Tokyo vintage boutique multishop">
       <div class="tl-dot shop"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">17:30</div>
-      <div class="tl-label">칼디 · 약국 쇼핑 <span class="badge b-shop">🛍 쇼핑</span></div>
-      <div class="tl-sub">칼디(새싹보리·위스키) · 드럭스토어(비오레·클렌징폼·고바야시)</div>
+      <div class="tl-time">16:00</div>
+      <div class="tl-label">다이칸야마 멀티숍 탐방 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">빈티지 의류 · 인테리어 · 라이프스타일 독립샵 밀집 지역</div>
+    </div>
+
+    <div class="tl-item" data-map="다이칸야마 카페" data-map-q="代官山 カフェ Daikanyama cafe Tokyo specialty coffee">
+      <div class="tl-dot cafe"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">17:00</div>
+      <div class="tl-label">다이칸야마 카페 <span class="badge b-cafe">☕ 카페</span></div>
+      <div class="tl-sub">SIGN · 몽크카페 등 스페셜티 커피 · 골목 카페 자유 선택</div>
     </div>
 
     <div class="tl-item">
       <div class="tl-dot spot"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-      <div class="tl-time">19:00</div>
-      <div class="tl-label">시부야역 → 긴자역 귀환 <span class="badge b-spot">🚇 교통</span></div>
-      <div class="tl-sub">긴자선 시부야역 → 긴자역 약 20분</div>
+      <div class="tl-time">18:00</div>
+      <div class="tl-label">다이칸야마역 → 긴자 귀환 <span class="badge b-spot">🚇 교통</span></div>
+      <div class="tl-sub">도큐 토요코선 다이칸야마역 → 시부야역 · 긴자선 → 긴자역 약 25분</div>
     </div>
 
     <div class="tl-item" data-map="네기시 긴자나미키도리점" data-map-q="ねぎし 銀座並木通り店 Negishi Ginza Namikidori beef tongue Tokyo">
       <div class="tl-dot food"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">19:30</div>
+      <div class="tl-time">19:00</div>
       <div class="tl-label">저녁 · 네기시 긴자나미키도리점 🎯 <span class="badge b-food">🐄 식사</span></div>
       <div class="tl-sub">긴자나미키도리 · 규탄(우설) 정식 · ⭐ 4.0+</div>
     </div>
@@ -766,93 +781,6 @@
   </div></div>
 </section>
 
-<!-- ═══ OPTIONAL ═══ -->
-<section class="page-section" id="optional">
-  <div class="section-header">
-    <div class="section-day-badge opt">OPTIONAL</div>
-    <div class="section-date">나카메구로 · 다이칸야마</div>
-    <div class="section-theme">멀티숍 · 카페 · 메구로강</div>
-  </div>
-
-  <p class="opt-note" style="display:block;text-align:center;">⚠️ 본 일정은 여유가 생길 경우 대체 또는 추가로 활용하세요</p>
-
-  <div class="card"><div class="timeline">
-
-    <div class="tl-item">
-      <div class="tl-dot spot"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-      <div class="tl-time">10:00</div>
-      <div class="tl-label">긴자역 → 나카메구로역 이동 <span class="badge b-spot">🚇 교통</span></div>
-      <div class="tl-sub">히비야선 긴자역 → 나카메구로역 약 15분</div>
-    </div>
-
-    <div class="tl-item" data-map="메구로강" data-map-q="目黒川 Meguro River Nakameguro Tokyo walk boutique">
-      <div class="tl-dot spot"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">10:15</div>
-      <div class="tl-label">메구로강변 산책 & 멀티숍 <span class="badge b-spot">🌊 관광</span></div>
-      <div class="tl-sub">강변 빈티지숍 · COW BOOKS · Traveler's Factory · 갤러리</div>
-    </div>
-
-    <div class="tl-item" data-map="스타벅스 리저브 로스터리 도쿄" data-map-q="Starbucks Reserve Roastery Tokyo Nakameguro 目黒川">
-      <div class="tl-dot cafe"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">11:00</div>
-      <div class="tl-label">스타벅스 리저브 로스터리 도쿄 🎯 <span class="badge b-cafe">☕ 카페</span></div>
-      <div class="tl-sub">나카메구로강변 · 4층 로스터리 · ⭐ 4.3 · 웨이팅 각오</div>
-    </div>
-
-    <div class="tl-item" data-map="나카메구로" data-map-q="中目黒 Nakameguro Tokyo lunch">
-      <div class="tl-dot food"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">12:30</div>
-      <div class="tl-label">점심 · 나카메구로 자유식사 <span class="badge b-food">🍽 식사</span></div>
-      <div class="tl-sub">강변 레스토랑 · 카페 식사 · 자유 선택</div>
-    </div>
-
-    <div class="tl-item" data-map="다이칸야마 T사이트" data-map-q="代官山 T-SITE TSUTAYA BOOKS Daikanyama Tokyo">
-      <div class="tl-dot shop"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">14:00</div>
-      <div class="tl-label">다이칸야마 T사이트 (Tsutaya Books) 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
-      <div class="tl-sub">대형 서점+라이프스타일샵 · 내부 카페 · 나카메구로역 도보 10분</div>
-    </div>
-
-    <div class="tl-item" data-map="힐사이드 테라스" data-map-q="ヒルサイドテラス Hillside Terrace Daikanyama Tokyo">
-      <div class="tl-dot spot"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">15:00</div>
-      <div class="tl-label">힐사이드 테라스 & LOG ROAD <span class="badge b-spot">🌿 관광</span></div>
-      <div class="tl-sub">다이칸야마 복합 갤러리·부티크 단지 · LOG ROAD 멀티숍</div>
-    </div>
-
-    <div class="tl-item" data-map="다이칸야마" data-map-q="代官山 Daikanyama Tokyo vintage boutique multishop">
-      <div class="tl-dot shop"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">16:00</div>
-      <div class="tl-label">다이칸야마 멀티숍 탐방 <span class="badge b-shop">🛍 쇼핑</span></div>
-      <div class="tl-sub">빈티지 의류 · 인테리어 · 라이프스타일 독립샵 밀집 지역</div>
-    </div>
-
-    <div class="tl-item" data-map="다이칸야마 카페" data-map-q="代官山 カフェ Daikanyama cafe Tokyo specialty coffee">
-      <div class="tl-dot cafe"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">17:00</div>
-      <div class="tl-label">다이칸야마 카페 <span class="badge b-cafe">☕ 카페</span></div>
-      <div class="tl-sub">SIGN · 몽크카페 등 스페셜티 커피 · 골목 카페 자유 선택</div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-dot spot"></div>
-      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-      <div class="tl-time">18:00</div>
-      <div class="tl-label">다이칸야마역 → 긴자 귀환 <span class="badge b-spot">🚇 교통</span></div>
-      <div class="tl-sub">도큐 토요코선 다이칸야마역 → 시부야역 · 긴자선 → 긴자역 약 25분</div>
-    </div>
-
-  </div></div>
-</section>
-
 <!-- ═══ 체크리스트 ═══ -->
 <section class="page-section" id="checklist">
   <div class="section-header">
@@ -914,7 +842,8 @@
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">스트리머 커피 (오쿠시부야)</div><div class="check-sub">Day 4 · 오쿠시부야 스페셜티 커피</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍺</div><div><div class="check-label">에비스 블루노트 플레이스</div><div class="check-sub">Day 3 저녁 · 에비스 · 예약 확정 18:30</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍣</div><div><div class="check-label">스시로 유라쿠초점</div><div class="check-sub">Day 4 저녁 · 유라쿠초 회전초밥</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">스트리머 커피 (Streamer Coffee)</div><div class="check-sub">Day 5 카페 · 오쿠시부야</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">스타벅스 리저브 로스터리 도쿄</div><div class="check-sub">Day 5 · 나카메구로 강변 4층 로스터리</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">📚</div><div><div class="check-label">다이칸야마 T사이트 (Tsutaya Books)</div><div class="check-sub">Day 5 · 대형 서점+라이프스타일샵</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🐄</div><div><div class="check-label">네기시 긴자나미키도리점</div><div class="check-sub">Day 5 저녁 · 긴자 규탄(우설)</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍠</div><div><div class="check-label">츠보야키이모</div><div class="check-sub">긴자 주변 · 군고구마</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🎵</div><div><div class="check-label">도쿄 재즈바</div><div class="check-sub">저녁 이후 · 긴자 주변</div></div></div>
@@ -933,14 +862,14 @@
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏙</div><div><div class="check-label">롯폰기힐즈 · 모리미술관</div><div class="check-sub">Day 2</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏙</div><div><div class="check-label">아자부다이힐즈</div><div class="check-sub">Day 2</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">사푸(safu)</div><div class="check-sub">Day 2 · 라이프스타일</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌿</div><div><div class="check-label">푸에브코(Puebco)</div><div class="check-sub">Day 5 · 시부야 파르코</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌿</div><div><div class="check-label">푸에브코(Puebco)</div><div class="check-sub">Day 4 · 시부야 파르코</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🧥</div><div><div class="check-label">르메르 에비스(Lemaire)</div><div class="check-sub">Day 3 · 에비스</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">에비스 harvest</div><div class="check-sub">Day 3 · 에비스</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍱</div><div><div class="check-label">교바시 이세히로 야키토리동</div><div class="check-sub">Day 2 점심 · 교바시 명물</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">⛺</div><div><div class="check-label">몽벨 교바시</div><div class="check-sub">Day 2 · 캠핑체어 등</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">💡</div><div><div class="check-label">아카리 조명</div><div class="check-sub">Day 2 · Ozeki Gallery 교바시</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏬</div><div><div class="check-label">시부야 파르코</div><div class="check-sub">Day 5 · 푸에브코 · 닌텐도 팝업</div></div></div>
-    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛒</div><div><div class="check-label">칼디 (KALDI)</div><div class="check-sub">Day 5 시부야 · 새싹보리 · 위스키</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏬</div><div><div class="check-label">시부야 파르코</div><div class="check-sub">Day 4 · 푸에브코 · 닌텐도 팝업</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🌿</div><div><div class="check-label">COW BOOKS · Traveler's Factory</div><div class="check-sub">Day 5 · 나카메구로 메구로강변</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🎨</div><div><div class="check-label">우에노모리 미술관 (반고흐)</div><div class="check-sub">Day 6 · 13:30 필수</div></div></div>
   </div>
 
