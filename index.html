@@ -542,15 +542,31 @@
     <div class="tl-item">
       <div class="tl-dot spot"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-      <div class="tl-time">16:00</div>
+      <div class="tl-time">15:30</div>
       <div class="tl-label">오모테산도역 → 시부야역 이동 <span class="badge b-spot">🚇 교통</span></div>
       <div class="tl-sub">도보 또는 지하철 1정거장 약 10분</div>
+    </div>
+
+    <div class="tl-item" data-map="시부야 파르코" data-map-q="渋谷PARCO Shibuya PARCO Tokyo Puebco Nintendo">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">15:45</div>
+      <div class="tl-label">시부야 파르코 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">푸에브코 · 닌텐도 팝업 · 각 층 탐방</div>
+    </div>
+
+    <div class="tl-item" data-map="로프트 시부야" data-map-q="渋谷ロフト Loft Shibuya Tokyo stationery lifestyle">
+      <div class="tl-dot shop"></div>
+      <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
+      <div class="tl-time">16:30</div>
+      <div class="tl-label">로프트 시부야 🎯 <span class="badge b-shop">🛍 쇼핑</span></div>
+      <div class="tl-sub">문구 · 인테리어 · 뷰티 · 라이프스타일 잡화</div>
     </div>
 
     <div class="tl-item" data-map="스트리머 커피 시부야" data-map-q="Streamer Coffee Company 渋谷 奥渋谷 Shibuya Tokyo">
       <div class="tl-dot cafe"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">16:30</div>
+      <div class="tl-time">17:15</div>
       <div class="tl-label">스트리머 커피 🎯 <span class="badge b-cafe">☕ 카페</span></div>
       <div class="tl-sub">오쿠시부야 · 라떼아트 유명 스페셜티 커피</div>
     </div>
@@ -558,7 +574,7 @@
     <div class="tl-item">
       <div class="tl-dot spot"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button></div>
-      <div class="tl-time">18:00</div>
+      <div class="tl-time">18:30</div>
       <div class="tl-label">시부야역 → 유라쿠초 이동 <span class="badge b-spot">🚇 교통</span></div>
       <div class="tl-sub">긴자선 시부야역 → 긴자역 도보 → 유라쿠초 약 25분</div>
     </div>
@@ -566,7 +582,7 @@
     <div class="tl-item" data-map="스시로 유라쿠초점" data-map-q="スシロー 有楽町 Sushiro Yurakucho Tokyo">
       <div class="tl-dot food"></div>
       <div class="tl-actions"><button class="tl-check-btn" onclick="toggleTl(this.closest('.tl-item'))"></button><button class="tl-map-btn" onclick="openMap(this.closest('.tl-item'))">📍</button></div>
-      <div class="tl-time">18:30</div>
+      <div class="tl-time">19:00</div>
       <div class="tl-label">저녁 · 스시로 유라쿠초점 🎯 <span class="badge b-food">🍣 식사</span></div>
       <div class="tl-sub">유라쿠초 · 회전초밥 · 긴자역 도보 귀환</div>
     </div>
@@ -883,6 +899,8 @@
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">카페 드 람브르</div><div class="check-sub">Day 3 점심 후 · 긴자 8초메 · ⭐4.3</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍜</div><div><div class="check-label">우니라멘</div><div class="check-sub">Day 4 점심 · 오모테산도/아오야마 성게 라멘</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">긴자웨스트 아오야마가든</div><div class="check-sub">Day 4 아오야마 · ⭐4.2 · 엘리제 쿠키</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🏬</div><div><div class="check-label">시부야 파르코</div><div class="check-sub">Day 4 · 푸에브코 · 닌텐도 팝업</div></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🛍</div><div><div class="check-label">로프트 시부야</div><div class="check-sub">Day 4 · 문구·라이프스타일 잡화</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">☕</div><div><div class="check-label">스트리머 커피 (오쿠시부야)</div><div class="check-sub">Day 4 · 오쿠시부야 스페셜티 커피</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍺</div><div><div class="check-label">에비스 블루노트 플레이스</div><div class="check-sub">Day 3 저녁 · 에비스 · 예약 확정 18:30</div></div></div>
     <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-icon">🍣</div><div><div class="check-label">스시로 유라쿠초점</div><div class="check-sub">Day 4 저녁 · 유라쿠초 회전초밥</div></div></div>
